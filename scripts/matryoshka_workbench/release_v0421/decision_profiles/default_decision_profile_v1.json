@@ -1,0 +1,38 @@
+{
+  "schema_version": "matryoshka_decision_profile_v1",
+  "profile_id": "v0416-compatible-default",
+  "profile_version": "1.0.0",
+  "description": "Matcher v0.4.17 defaults that reproduce Matcher v0.4.16 threshold behavior. Scoring weights are frozen in code.",
+  "decision_mode": "score_only",
+  "thresholds": {
+    "minimum_score": 0.42,
+    "minimum_margin": 0.03,
+    "reconstruction_critical_floor": 0.66,
+    "reconstruction_identity_floor": 0.40,
+    "sentence_context_floor": 0.20,
+    "sentence_event_floor": 0.22,
+    "sentence_one_sided_context_floor": 0.45,
+    "sentence_one_sided_margin": 0.10,
+    "claim_direct_identity": 0.62,
+    "claim_conflict_identity": 0.72,
+    "related_identity": 0.40,
+    "contradiction_identity_floor": 0.48,
+    "contradiction_anchor_floor": 0.40,
+    "value_redaction_title_containment_floor": 0.55,
+    "value_redaction_event_floor": 0.35,
+    "sentence_local_anchor_floor": 0.34,
+    "claim_background_lexical_floor": 0.12,
+    "claim_raw_validation_floor": 0.40,
+    "contradiction_participant_containment_floor": 0.66,
+    "contradiction_object_containment_floor": 0.66,
+    "contradiction_route_relevance_floor": 0.34,
+    "contradiction_background_retrieval_floor": 0.35,
+    "contradiction_raw_validation_floor": 0.40,
+    "reconstruction_literal_containment_floor": 0.95
+  },
+  "display_policy": {
+    "lower_threshold": 0.42,
+    "upper_threshold": 0.62,
+    "minimum_margin": 0.03
+  }
+}

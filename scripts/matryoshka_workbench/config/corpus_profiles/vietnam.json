@@ -1,0 +1,44 @@
+{
+  "profile_name": "vietnam",
+  "engine_root": "scripts/matryoshka_workbench/release_v0421",
+  "authoritative_versions": [
+    "query_semantic_parser_v0_4_15.py",
+    "external_query_semantic_matcher_v0_4_20.py",
+    "run_coordinated_v0_4_21.py",
+    "retry_llm_digest_v0_4_14.py",
+    "preflight_environment_v0_4_21.py",
+    "streamlit_semantic_workbench_v3_19.py",
+    "automation/matryoshka_batch_runner_v1_0_18.py"
+  ],
+  "extraction_dir": "output/knowledge_graph/viet_full_unredacted/extraction_canonicalized",
+  "decision_profile": "scripts/matryoshka_workbench/release_v0421/decision_profiles/default_decision_profile_v1.json",
+  "corpus_entity_resource": "data/resources/vietnam/vietnam_diplomatic_archive_entity_aliases_v1.json",
+  "benchmark_overrides": {
+    "sampling": {
+      "value_redaction": {
+        "allowed_entity_types": [
+          "person",
+          "location",
+          "country",
+          "organization"
+        ],
+        "fallback_entity_types": [
+          "government",
+          "military",
+          "political_party",
+          "location"
+        ],
+        "max_label_doc_frequency": 5,
+        "fallback_max_label_doc_frequency": 8,
+        "person_min_label_words": 1,
+        "max_entity_candidates_in_paragraph": 36
+      },
+      "sentence_redaction": {
+        "max_sentence_words": 42,
+        "target_sentence_words": 18,
+        "min_entity_hits": 0
+      }
+    }
+  },
+  "status": "ready"
+}

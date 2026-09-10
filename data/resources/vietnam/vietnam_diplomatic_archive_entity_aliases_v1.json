@@ -1,0 +1,234 @@
+{
+  "schema_version": "matryoshka_corpus_entity_alias_resource_v1",
+  "corpus_resource_id": "vietnam-diplomatic-archive-entity-aliases",
+  "corpus_id": "vietnam-diplomatic-archive",
+  "resource_version": "1.0.0",
+  "generated_at": "2026-07-30T00:00:00Z",
+  "default_language": "en",
+  "entities": [
+    {
+      "canonical_entity_id": "vda:organization:drv",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "Democratic Republic of Vietnam",
+      "surface_forms": [
+        {
+          "surface_form": "DRV",
+          "alias_type": "ACRONYM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 1.0,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "entities.csv",
+              "source_row_id": "e10",
+              "corpus_doc_id": "1974PARIS08157"
+            }
+          ]
+        },
+        {
+          "surface_form": "North Vietnam",
+          "alias_type": "HISTORICAL_SHORT_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 0.98,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "claims.csv",
+              "source_row_id": "c5",
+              "corpus_doc_id": "1974PARIS08157"
+            }
+          ]
+        },
+        {
+          "surface_form": "North Vietnamese",
+          "alias_type": "ADJECTIVAL_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 0.98,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "claims.csv",
+              "source_row_id": "c3",
+              "corpus_doc_id": "1974PARIS08381"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "vda:event:pompidou-memorial-service",
+      "entity_type": "EVENT",
+      "canonical_display_form": "Pompidou memorial service",
+      "surface_forms": [
+        {
+          "surface_form": "Pompidou memorial service",
+          "alias_type": "CANONICAL_CORPUS_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 1.0,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "events.csv",
+              "source_row_id": "ev4",
+              "corpus_doc_id": "1974PARIS08436"
+            }
+          ]
+        },
+        {
+          "surface_form": "official service",
+          "alias_type": "CONTEXTUAL_SHORT_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 0.9,
+          "review_state": "ACCEPTED",
+          "scope": {
+            "context_terms": [
+              "representation",
+              "delegation",
+              "April 6"
+            ]
+          },
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "claims.csv",
+              "source_row_id": "claim_0",
+              "corpus_doc_id": "1974PARIS08157"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "vda:organization:knd",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "Khmer Narcotics Directorate",
+      "surface_forms": [
+        {
+          "surface_form": "Khmer Narcotics Directorate",
+          "alias_type": "CANONICAL_CORPUS_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 1.0,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "claims.csv",
+              "source_row_id": "c1",
+              "corpus_doc_id": "1974PHNOM01067"
+            }
+          ]
+        },
+        {
+          "surface_form": "KND",
+          "alias_type": "ACRONYM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 1.0,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "claims.csv",
+              "source_row_id": "c1",
+              "corpus_doc_id": "1974PHNOM01067"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "vda:location:poipet",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "Poipet",
+      "surface_forms": [
+        {
+          "surface_form": "Poipet",
+          "alias_type": "CANONICAL_CORPUS_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 1.0,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "e2",
+              "corpus_doc_id": "1974PHNOM01067"
+            }
+          ]
+        },
+        {
+          "surface_form": "City of Poipet",
+          "alias_type": "ADMINISTRATIVE_SURFACE",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 0.95,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "MANUAL",
+              "source_table": "chunks.csv",
+              "source_row_id": "0",
+              "corpus_doc_id": "1974PHNOM01067"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "vda:location:battambang-province",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "Battambang Province",
+      "surface_forms": [
+        {
+          "surface_form": "Battambang Province",
+          "alias_type": "CANONICAL_CORPUS_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 1.0,
+          "review_state": "ACCEPTED",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "e12",
+              "corpus_doc_id": "1974PHNOM01067"
+            }
+          ]
+        },
+        {
+          "surface_form": "Battambang",
+          "alias_type": "CONTEXTUAL_SHORT_FORM",
+          "language": "en",
+          "script": "Latn",
+          "confidence": 0.8,
+          "review_state": "CANDIDATE",
+          "scope": {
+            "context_terms": [
+              "province",
+              "Poipet"
+            ]
+          },
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "e11",
+              "corpus_doc_id": "1973STATE176433"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

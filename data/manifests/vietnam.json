@@ -1,0 +1,24 @@
+{
+  "corpus_id": "vietnam",
+  "raw": {
+    "source_input_csv": "data/raw/vietnam/source_input.csv"
+  },
+  "raw_layout": "local_copy",
+  "prepared_root": "data/prepared/vietnam",
+  "knowledge_graph_project_dir": "output/knowledge_graph/viet_full_unredacted",
+  "knowledge_graph_extraction": "output/knowledge_graph/viet_full_unredacted/extraction_canonicalized",
+  "resource": "data/resources/vietnam/vietnam_diplomatic_archive_entity_aliases_v1.json",
+  "core_tables": [
+    "chunks.csv",
+    "entities.csv",
+    "claims.csv",
+    "events.csv",
+    "relations.csv",
+    "kg_pseudo_chunks.csv",
+    "kg_pseudo_chunks_reconstruction.csv",
+    "kg_pseudo_chunks_claims.csv",
+    "kg_pseudo_chunks_contradictions.csv",
+    "kg_pseudo_chunks_redaction.csv",
+    "kg_pseudo_chunk_components.csv"
+  ]
+}

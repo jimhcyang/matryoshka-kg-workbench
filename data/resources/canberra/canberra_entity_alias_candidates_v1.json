@@ -1,0 +1,1353 @@
+{
+  "schema_version": "matryoshka_corpus_entity_alias_resource_v1",
+  "corpus_resource_id": "canberra_entity_alias_candidates_v1",
+  "corpus_id": "canberra",
+  "resource_version": "v1",
+  "generated_at": "2026-08-10T03:48:04.725377+00:00",
+  "entities": [
+    {
+      "canonical_entity_id": "canberra:organization:55dcc924746079d0",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "DEPARTMENT OF FOREIGN AFFAIRS",
+      "surface_forms": [
+        {
+          "surface_form": "DEPARTMENT OF FOREIGN AFFAIRS",
+          "normalized_form": "department of foreign affairs",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "1979CANBER06183"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:c293886b322349a4",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "PAKISTAN",
+      "surface_forms": [
+        {
+          "surface_form": "PAKISTAN",
+          "normalized_form": "pakistan",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979CANBER06183"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979STATE086090"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "1979STATE089563"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:efdc6bd3f9a3d815",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "AUSTRALIA",
+      "surface_forms": [
+        {
+          "surface_form": "AUSTRALIA",
+          "normalized_form": "australia",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979CANBER06183"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:other:6023010ab41a6617",
+      "entity_type": "OTHER",
+      "canonical_display_form": "WESTERN POWERS",
+      "surface_forms": [
+        {
+          "surface_form": "WESTERN POWERS",
+          "normalized_form": "western powers",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979CANBER06183"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:b43f46a5e8d3f780",
+      "entity_type": "PERSON",
+      "canonical_display_form": "LOUIS V NOSENZO",
+      "surface_forms": [
+        {
+          "surface_form": "LOUIS V NOSENZO",
+          "normalized_form": "louis v nosenzo",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979CANBER06183"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:57326f558a309a9a",
+      "entity_type": "PERSON",
+      "canonical_display_form": "FRANK BENNETT",
+      "surface_forms": [
+        {
+          "surface_form": "FRANK BENNETT",
+          "normalized_form": "frank bennett",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "1979CANBER06183"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:68820a0153da51bc",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "INDIA",
+      "surface_forms": [
+        {
+          "surface_form": "INDIA",
+          "normalized_form": "india",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "1979STATE086090"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:other:94f944aed98a4bf9",
+      "entity_type": "OTHER",
+      "canonical_display_form": "NATO",
+      "surface_forms": [
+        {
+          "surface_form": "NATO",
+          "normalized_form": "nato",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979STATE086090"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:d8e16d4054f1ced6",
+      "entity_type": "PERSON",
+      "canonical_display_form": "GENERAL ZIA",
+      "surface_forms": [
+        {
+          "surface_form": "GENERAL ZIA",
+          "normalized_form": "general zia",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979STATE086090"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:c079cd94eb4a6fb3",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "SOVIET UNION",
+      "surface_forms": [
+        {
+          "surface_form": "SOVIET UNION",
+          "normalized_form": "soviet union",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979STATE086090"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:0acad555b0963c71",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "IAEA",
+      "surface_forms": [
+        {
+          "surface_form": "IAEA",
+          "normalized_form": "iaea",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979STATE089563"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:285f43cd55b7a642",
+      "entity_type": "PERSON",
+      "canonical_display_form": "PRESIDENT ZIA",
+      "surface_forms": [
+        {
+          "surface_form": "PRESIDENT ZIA",
+          "normalized_form": "president zia",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979STATE089563"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:49bf02c21bb768f1",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "SOUTH ASIA",
+      "surface_forms": [
+        {
+          "surface_form": "SOUTH ASIA",
+          "normalized_form": "south asia",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979STATE089563"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:a43507c429be0762",
+      "entity_type": "PERSON",
+      "canonical_display_form": "ZULFIKAR ALI BHUTTO",
+      "surface_forms": [
+        {
+          "surface_form": "ZULFIKAR ALI BHUTTO",
+          "normalized_form": "zulfikar ali bhutto",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:0e532fd7aa36e70a",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "FRANCE",
+      "surface_forms": [
+        {
+          "surface_form": "FRANCE",
+          "normalized_form": "france",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979STATE151317"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979STATE151317"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_7",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:b97a8cf6ac674ee8",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "LIBYA",
+      "surface_forms": [
+        {
+          "surface_form": "LIBYA",
+          "normalized_form": "libya",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979STATE151317"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:01ee6fce3ad6329f",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "HIROSHIMA",
+      "surface_forms": [
+        {
+          "surface_form": "HIROSHIMA",
+          "normalized_form": "hiroshima",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:6050c057ca0ad029",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "ALMELO",
+      "surface_forms": [
+        {
+          "surface_form": "ALMELO",
+          "normalized_form": "almelo",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:936f0d4f44ebd134",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "AMSTERDAM",
+      "surface_forms": [
+        {
+          "surface_form": "AMSTERDAM",
+          "normalized_form": "amsterdam",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:afdfc9595d181e52",
+      "entity_type": "PERSON",
+      "canonical_display_form": "DR ABDUL KATER KAHN",
+      "surface_forms": [
+        {
+          "surface_form": "DR ABDUL KATER KAHN",
+          "normalized_form": "dr abdul kater kahn",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_7",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:other:7bd7b264a4c1ef51",
+      "entity_type": "OTHER",
+      "canonical_display_form": "UNIVERSITY OF LOUVAIN",
+      "surface_forms": [
+        {
+          "surface_form": "UNIVERSITY OF LOUVAIN",
+          "normalized_form": "university of louvain",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_8",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:4cb7e1de899b013d",
+      "entity_type": "PERSON",
+      "canonical_display_form": "MUAMMAR GADDAFI",
+      "surface_forms": [
+        {
+          "surface_form": "MUAMMAR GADDAFI",
+          "normalized_form": "muammar gaddafi",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:e1a0c1ff58822d78",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "UNITED STATES",
+      "surface_forms": [
+        {
+          "surface_form": "UNITED STATES",
+          "normalized_form": "united states",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979STATE151317"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:74254f7a6dcb89e3",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "SWITZERLAND",
+      "surface_forms": [
+        {
+          "surface_form": "SWITZERLAND",
+          "normalized_form": "switzerland",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:24616e52b08fd8db",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "GREAT BRITAIN",
+      "surface_forms": [
+        {
+          "surface_form": "GREAT BRITAIN",
+          "normalized_form": "great britain",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:a1649f18b96c24ff",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "WEST GERMANY",
+      "surface_forms": [
+        {
+          "surface_form": "WEST GERMANY",
+          "normalized_form": "west germany",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_7",
+              "corpus_doc_id": "1979STATE151317"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979STATE151317"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:1352cb244ce53d31",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "CALIFORNIA",
+      "surface_forms": [
+        {
+          "surface_form": "CALIFORNIA",
+          "normalized_form": "california",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_8",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:0f46bb20d584ddea",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "BRUSSELS",
+      "surface_forms": [
+        {
+          "surface_form": "BRUSSELS",
+          "normalized_form": "brussels",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_9",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:b70fbea69e38fc98",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "BONN",
+      "surface_forms": [
+        {
+          "surface_form": "BONN",
+          "normalized_form": "bonn",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_10",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:f0f0420e555bbcb9",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "HAAG",
+      "surface_forms": [
+        {
+          "surface_form": "HAAG",
+          "normalized_form": "haag",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_11",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:3fab9567776c0e29",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "KORA ENGINEERING",
+      "surface_forms": [
+        {
+          "surface_form": "KORA ENGINEERING",
+          "normalized_form": "kora engineering",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_12",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:428f66aefa3d5083",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "TEAM INDUSTRIES",
+      "surface_forms": [
+        {
+          "surface_form": "TEAM INDUSTRIES",
+          "normalized_form": "team industries",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_13",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:5f6ba67460f74749",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "EMERSON ELECTRIC",
+      "surface_forms": [
+        {
+          "surface_form": "EMERSON ELECTRIC",
+          "normalized_form": "emerson electric",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_14",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:55b795f67efb005a",
+      "entity_type": "PERSON",
+      "canonical_display_form": "FRANK ALIN",
+      "surface_forms": [
+        {
+          "surface_form": "FRANK ALIN",
+          "normalized_form": "frank alin",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_15",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:95d3059a7d2f2ab8",
+      "entity_type": "PERSON",
+      "canonical_display_form": "THOMAS PICKERING",
+      "surface_forms": [
+        {
+          "surface_form": "THOMAS PICKERING",
+          "normalized_form": "thomas pickering",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_16",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:60abac7b9c38bea5",
+      "entity_type": "PERSON",
+      "canonical_display_form": "JOHN GLENN",
+      "surface_forms": [
+        {
+          "surface_form": "JOHN GLENN",
+          "normalized_form": "john glenn",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_17",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:05f16f99bda77f7d",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "US",
+      "surface_forms": [
+        {
+          "surface_form": "US",
+          "normalized_form": "us",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:9296cee8e7c3c4d2",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "CBS NEWS",
+      "surface_forms": [
+        {
+          "surface_form": "CBS NEWS",
+          "normalized_form": "cbs news",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:b70911199bc0122f",
+      "entity_type": "PERSON",
+      "canonical_display_form": "IFTIKHAR ALI",
+      "surface_forms": [
+        {
+          "surface_form": "IFTIKHAR ALI",
+          "normalized_form": "iftikhar ali",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:ab3f5166aeb00ee4",
+      "entity_type": "PERSON",
+      "canonical_display_form": "BILL MCLAUGHLIN",
+      "surface_forms": [
+        {
+          "surface_form": "BILL MCLAUGHLIN",
+          "normalized_form": "bill mclaughlin",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "1979STATE151317"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:dcbaa4ef53fa844c",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "URENCO",
+      "surface_forms": [
+        {
+          "surface_form": "URENCO",
+          "normalized_form": "urenco",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:f09a6656f3ca1963",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "DE VOLKSKRANT",
+      "surface_forms": [
+        {
+          "surface_form": "DE VOLKSKRANT",
+          "normalized_form": "de volkskrant",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:person:b51ea890dda410ec",
+      "entity_type": "PERSON",
+      "canonical_display_form": "FRITS VAN VEEN",
+      "surface_forms": [
+        {
+          "surface_form": "FRITS VAN VEEN",
+          "normalized_form": "frits van veen",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:f1b80b3df0baacf8",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "BELGIUM",
+      "surface_forms": [
+        {
+          "surface_form": "BELGIUM",
+          "normalized_form": "belgium",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:other:33d8c24801ef854a",
+      "entity_type": "OTHER",
+      "canonical_display_form": "ZIONIST CIRCLES",
+      "surface_forms": [
+        {
+          "surface_form": "ZIONIST CIRCLES",
+          "normalized_form": "zionist circles",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:15d27c5a1d75f593",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "ULTRACENTRIFUGE NEDERLAND UCN",
+      "surface_forms": [
+        {
+          "surface_form": "ULTRACENTRIFUGE NEDERLAND UCN",
+          "normalized_form": "ultracentrifuge nederland ucn",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:other:76f7328dd5aa518b",
+      "entity_type": "OTHER",
+      "canonical_display_form": "DYNAMIC PHYSICS RESEARCH LABORATORY OF FMF",
+      "surface_forms": [
+        {
+          "surface_form": "DYNAMIC PHYSICS RESEARCH LABORATORY OF FMF",
+          "normalized_form": "dynamic physics research laboratory of fmf",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:other:30c0f33c631e00d5",
+      "entity_type": "OTHER",
+      "canonical_display_form": "CALVINIST DAILY TROUW",
+      "surface_forms": [
+        {
+          "surface_form": "CALVINIST DAILY TROUW",
+          "normalized_form": "calvinist daily trouw",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_7",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:2ef3da5bfb03cdf3",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "FMF UNITED MACHINE FACTORY",
+      "surface_forms": [
+        {
+          "surface_form": "FMF UNITED MACHINE FACTORY",
+          "normalized_form": "fmf united machine factory",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_8",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:c47532e691054efa",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "HAGUE",
+      "surface_forms": [
+        {
+          "surface_form": "HAGUE",
+          "normalized_form": "hague",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_9",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:f7b9af4275b1f353",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "ISLAMABAD",
+      "surface_forms": [
+        {
+          "surface_form": "ISLAMABAD",
+          "normalized_form": "islamabad",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_10",
+              "corpus_doc_id": "1979THEHAGUE02208"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:bac59756da56efb5",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "NIHON KEIZAI SHIMBUN",
+      "surface_forms": [
+        {
+          "surface_form": "NIHON KEIZAI SHIMBUN",
+          "normalized_form": "nihon keizai shimbun",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:a4069c33a82c0d34",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "MITI",
+      "surface_forms": [
+        {
+          "surface_form": "MITI",
+          "normalized_form": "miti",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "1979TOKYO12229"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:517b83c5f91bfc8f",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "US DEPARTMENT OF STATE",
+      "surface_forms": [
+        {
+          "surface_form": "US DEPARTMENT OF STATE",
+          "normalized_form": "us department of state",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979TOKYO12229"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:70e5b42023fd105a",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "BHUTTO GOVERNMENT",
+      "surface_forms": [
+        {
+          "surface_form": "BHUTTO GOVERNMENT",
+          "normalized_form": "bhutto government",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:organization:53b3ac115b02bf11",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "ZIA UL HAQ GOVERNMENT",
+      "surface_forms": [
+        {
+          "surface_form": "ZIA UL HAQ GOVERNMENT",
+          "normalized_form": "zia ul haq government",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "canberra:location:5c063073e8c58e8b",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "JAPAN",
+      "surface_forms": [
+        {
+          "surface_form": "JAPAN",
+          "normalized_form": "japan",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "1979TOKYO12229"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

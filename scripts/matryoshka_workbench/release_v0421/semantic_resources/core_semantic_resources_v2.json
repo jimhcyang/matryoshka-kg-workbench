@@ -1,0 +1,45 @@
+{
+  "schema": "matryoshka_semantic_resources_v1",
+  "resource_id": "matryoshka-core-corpus-neutral",
+  "resource_version": "2.2.0",
+  "alias_groups": {
+    "lexical_effectiveness_absence": [
+      "ineffective",
+      "ineffectual",
+      "of no value",
+      "useless",
+      "worthless"
+    ],
+    "lexical_internal_division": [
+      "divided",
+      "division",
+      "divisions",
+      "fragmented",
+      "internal split",
+      "split"
+    ]
+  },
+  "event_families": {
+    "gain_initiative": [
+      "capture the initiative",
+      "seize the initiative",
+      "take the initiative"
+    ],
+    "resume_activity": [
+      "get back to work",
+      "restart work",
+      "resume work"
+    ],
+    "positive_action": [
+      "act positively",
+      "positive action",
+      "take positive action"
+    ],
+    "lack_progress": [
+      "lack of progress",
+      "no progress",
+      "nothing accomplished",
+      "nothing is accomplished"
+    ]
+  }
+}

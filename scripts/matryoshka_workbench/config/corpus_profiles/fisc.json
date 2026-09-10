@@ -1,0 +1,66 @@
+{
+  "profile_name": "fisc",
+  "engine_root": "scripts/matryoshka_workbench/release_v0421",
+  "authoritative_versions": [
+    "query_semantic_parser_v0_4_15.py",
+    "external_query_semantic_matcher_v0_4_20.py",
+    "run_coordinated_v0_4_21.py",
+    "retry_llm_digest_v0_4_14.py",
+    "preflight_environment_v0_4_21.py",
+    "streamlit_semantic_workbench_v3_19.py",
+    "automation/matryoshka_batch_runner_v1_0_18.py"
+  ],
+  "extraction_dir": "output/knowledge_graph/fisc_full_unredacted/extraction_canonicalized",
+  "decision_profile": "scripts/matryoshka_workbench/release_v0421/decision_profiles/default_decision_profile_v1.json",
+  "corpus_entity_resource": "data/resources/fisc/fisc_entity_alias_candidates_v1.json",
+  "benchmark_overrides": {
+    "sampling": {
+      "max_cases_per_doc": 4,
+      "value_redaction": {
+        "min_confidence": 0.0,
+        "allowed_entity_types": [
+          "person",
+          "country",
+          "organization",
+          "government",
+          "location"
+        ],
+        "fallback_entity_types": [
+          "organization",
+          "government",
+          "location",
+          "military"
+        ],
+        "max_label_doc_frequency": 8,
+        "fallback_max_label_doc_frequency": 12,
+        "person_min_label_words": 1,
+        "max_entity_candidates_in_paragraph": 200,
+        "min_role_words": 0,
+        "fallback_min_role_words": 0,
+        "max_slot_count": 2,
+        "slot_count_decay": 0.25
+      },
+      "sentence_redaction": {
+        "max_sentence_words": 48,
+        "target_sentence_words": 20,
+        "max_visible_context_chars": 680,
+        "min_entity_hits": 0
+      },
+      "claims": {
+        "max_words": 72,
+        "min_role_fields": 2,
+        "max_object_words": 32,
+        "require_simple_clause_arguments": true,
+        "query_style": "contextual"
+      },
+      "contradictions": {
+        "max_words": 72,
+        "min_role_fields": 2,
+        "max_object_words": 32,
+        "require_simple_clause_arguments": true,
+        "query_style": "role_clause"
+      }
+    }
+  },
+  "status": "ready"
+}

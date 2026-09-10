@@ -1,0 +1,23 @@
+{
+  "coordinated_release": "2026.08-parser-v0.4.15-matcher-v0.4.20-digest-v0.4.14-workbench-v3.19-automation-v1.0.18-requirements-v1.5.4",
+  "query_parser": "v0.4.15",
+  "semantic_matcher": "v0.4.20",
+  "digest_builder": "v0.4.14",
+  "streamlit_workbench": "v3.19",
+  "batch_automation": "v1.0.18",
+  "decision_profile_schema": "matryoshka_decision_profile_v1",
+  "corpus_entity_alias_resource_schema": "v1",
+  "requirements_objective": "Matryoshka Requirements v1.4 plus Production Run Audit Addendum v1.4.2 Revision 1, Decision Profile Addendum v1.5, Independent Event Binding Addendum v1.5.2, Complete Event Identity Addendum v1.5.3, and Final Freeze Invariants Addendum v1.5.4",
+  "architecture": "Parser v0.4.15 makes optional LLM augmentation monotonic and audits every substantive clause; Matcher v0.4.20 scoring, retrieval, thresholds, and semantic decisions are byte-identical to the prior freeze candidate; Digest v0.4.14 reports full-query clause coverage; Workbench v3.19 renders Claims scores and eligibility and exposes source-representation gaps; Automation v1.0.18 binds cases to explicit corpus profiles and validates semantic visualization content",
+  "legacy_files_retained_for_regression": true,
+  "authoritative_entrypoints": [
+    "query_semantic_parser_v0_4_15.py",
+    "external_query_semantic_matcher_v0_4_20.py",
+    "run_coordinated_v0_4_21.py",
+    "retry_llm_digest_v0_4_14.py",
+    "preflight_environment_v0_4_21.py",
+    "streamlit_semantic_workbench_v3_19.py",
+    "automation/matryoshka_batch_runner_v1_0_18.py"
+  ],
+  "production_certification": "CORRECTIVE CANDIDATE: production corpus, target macOS/browser, full performance, and live OpenAI gates remain external"
+}

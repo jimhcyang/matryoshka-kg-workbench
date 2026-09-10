@@ -1,0 +1,6 @@
+# Runtime-only subset. The package-root requirements.txt is authoritative.
+numpy>=1.26,<3
+pandas>=2.2,<4
+openai>=2.0,<3
+streamlit>=1.40,<2
+matplotlib>=3.8,<4

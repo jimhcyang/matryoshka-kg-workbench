@@ -1,0 +1,2581 @@
+{
+  "schema_version": "matryoshka_corpus_entity_alias_resource_v1",
+  "corpus_resource_id": "fisc_unredacted-entity-alias-candidates",
+  "corpus_id": "fisc_unredacted",
+  "resource_version": "0.1.0",
+  "generated_at": "2026-08-05T01:07:53.122959+00:00",
+  "entities": [
+    {
+      "canonical_entity_id": "fisc_unredacted:location:3041955a1b6c0e9b654e",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "BALTICS",
+      "surface_forms": [
+        {
+          "surface_form": "BALTICS",
+          "normalized_form": "baltics",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:cb2d9e4f790cccd89a09",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "EASTERN EUROPE",
+      "surface_forms": [
+        {
+          "surface_form": "EASTERN EUROPE",
+          "normalized_form": "eastern europe",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_7",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:a08a253089f6c20a41a9",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "EUROPE",
+      "surface_forms": [
+        {
+          "surface_form": "EUROPE",
+          "normalized_form": "europe",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:c738575d2f04a0d0c4bd",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "MOSCOW",
+      "surface_forms": [
+        {
+          "surface_form": "MOSCOW",
+          "normalized_form": "moscow",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_9",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:a779fd11878a4f5d3d26",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "NEW YORK CITY",
+      "surface_forms": [
+        {
+          "surface_form": "NEW YORK CITY",
+          "normalized_form": "new york city",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:42980a24bfb0150dd2bd",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "NEW YORK CITY METROPOLITAN AREA",
+      "surface_forms": [
+        {
+          "surface_form": "NEW YORK CITY METROPOLITAN AREA",
+          "normalized_form": "new york city metropolitan area",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:82d3a026db511887c61d",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "NEW YORK NY",
+      "surface_forms": [
+        {
+          "surface_form": "NEW YORK NY",
+          "normalized_form": "new york ny",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:28bba1c24665942bea41",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "SINGAPORE",
+      "surface_forms": [
+        {
+          "surface_form": "SINGAPORE",
+          "normalized_form": "singapore",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_10",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:afca60d25d5e9fb10f86",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "SOUTH AFRICA",
+      "surface_forms": [
+        {
+          "surface_form": "SOUTH AFRICA",
+          "normalized_form": "south africa",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_8",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:location:b1ea3be30a57b16f5c67",
+      "entity_type": "LOCATION",
+      "canonical_display_form": "UNITED KINGDOM",
+      "surface_forms": [
+        {
+          "surface_form": "UNITED KINGDOM",
+          "normalized_form": "united kingdom",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_7",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:cde19d489c4c4cede432",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "DEPARTMENT OF HOMELAND SECURITY",
+      "surface_forms": [
+        {
+          "surface_form": "DEPARTMENT OF HOMELAND SECURITY",
+          "normalized_form": "department of homeland security",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:d1ed3a0e473f46114757",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "DNC",
+      "surface_forms": [
+        {
+          "surface_form": "DNC",
+          "normalized_form": "dnc",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:2187b40eb7093edb4f49",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "FBI",
+      "surface_forms": [
+        {
+          "surface_form": "FBI",
+          "normalized_form": "fbi",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:be1200f0bf15584504bc",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "FEDERAL BUREAU OF INVESTIGATION",
+      "surface_forms": [
+        {
+          "surface_form": "FEDERAL BUREAU OF INVESTIGATION",
+          "normalized_form": "federal bureau of investigation",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:05212c192f1975d44241",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "GAZPROM",
+      "surface_forms": [
+        {
+          "surface_form": "GAZPROM",
+          "normalized_form": "gazprom",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:e764a2112c4b1c095ee8",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "GAZPROMBANK",
+      "surface_forms": [
+        {
+          "surface_form": "GAZPROMBANK",
+          "normalized_form": "gazprombank",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:5faf860b5c3c7a9ee232",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "NEW ECONOMIC SCHOOL",
+      "surface_forms": [
+        {
+          "surface_form": "NEW ECONOMIC SCHOOL",
+          "normalized_form": "new economic school",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:b9ba31c74d77faceefbb",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "OFFICE OF THE DIRECTOR OF NATIONAL INTELLIGENCE",
+      "surface_forms": [
+        {
+          "surface_form": "OFFICE OF THE DIRECTOR OF NATIONAL INTELLIGENCE",
+          "normalized_form": "office of the director of national intelligence",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:cef1462307dae0974283",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "STATE CORPORATION DEPOSIT INSURANCE AGENCY",
+      "surface_forms": [
+        {
+          "surface_form": "STATE CORPORATION DEPOSIT INSURANCE AGENCY",
+          "normalized_form": "state corporation deposit insurance agency",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:5f70f08284e1efdcddd3",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "UNITED NATIONS",
+      "surface_forms": [
+        {
+          "surface_form": "UNITED NATIONS",
+          "normalized_form": "united nations",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:6353d3a900993a13475a",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "US DEPARTMENT OF JUSTICE",
+      "surface_forms": [
+        {
+          "surface_form": "US DEPARTMENT OF JUSTICE",
+          "normalized_form": "us department of justice",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:832a33c18b1e9a908d72",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "WHITE HOUSE",
+      "surface_forms": [
+        {
+          "surface_form": "WHITE HOUSE",
+          "normalized_form": "white house",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:organization:f1c8330d712062c5cb5a",
+      "entity_type": "ORGANIZATION",
+      "canonical_display_form": "WIKILEAKS",
+      "surface_forms": [
+        {
+          "surface_form": "WIKILEAKS",
+          "normalized_form": "wikileaks",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_8",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:7d18ddafc8f2f95334ef",
+      "entity_type": "OTHER",
+      "canonical_display_form": "2016 US PRESIDENTIAL ELECTION",
+      "surface_forms": [
+        {
+          "surface_form": "2016 US PRESIDENTIAL ELECTION",
+          "normalized_form": "2016 us presidential election",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:75f57b07f2072f4895c5",
+      "entity_type": "OTHER",
+      "canonical_display_form": "ATTORNEY GENERAL",
+      "surface_forms": [
+        {
+          "surface_form": "ATTORNEY GENERAL",
+          "normalized_form": "attorney general",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_2"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_8"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:074153586f4b9cbcf04a",
+      "entity_type": "OTHER",
+      "canonical_display_form": "CANDIDATE #1",
+      "surface_forms": [
+        {
+          "surface_form": "CANDIDATE #1",
+          "normalized_form": "candidate #1",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:f2e2ab1b752da15369f3",
+      "entity_type": "OTHER",
+      "canonical_display_form": "CANDIDATE #2",
+      "surface_forms": [
+        {
+          "surface_form": "CANDIDATE #2",
+          "normalized_form": "candidate #2",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:f7a69a912859a2d2c8f0",
+      "entity_type": "OTHER",
+      "canonical_display_form": "COURT",
+      "surface_forms": [
+        {
+          "surface_form": "COURT",
+          "normalized_form": "court",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:fe2e6db3fe2a98afabda",
+      "entity_type": "OTHER",
+      "canonical_display_form": "DOCKET NUMBER 2016 1182",
+      "surface_forms": [
+        {
+          "surface_form": "DOCKET NUMBER 2016 1182",
+          "normalized_form": "docket number 2016 1182",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:77ef2d8f0e1d2b0642e2",
+      "entity_type": "OTHER",
+      "canonical_display_form": "EXECUTIVE BRANCH",
+      "surface_forms": [
+        {
+          "surface_form": "EXECUTIVE BRANCH",
+          "normalized_form": "executive branch",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:974ae29852da526ce63a",
+      "entity_type": "OTHER",
+      "canonical_display_form": "FBI",
+      "surface_forms": [
+        {
+          "surface_form": "FBI",
+          "normalized_form": "fbi",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:9ba365644dfa3a305e3c",
+      "entity_type": "OTHER",
+      "canonical_display_form": "FOREIGN INTELLIGENCE SURVEILLANCE ACT OF 1978",
+      "surface_forms": [
+        {
+          "surface_form": "FOREIGN INTELLIGENCE SURVEILLANCE ACT OF 1978",
+          "normalized_form": "foreign intelligence surveillance act of 1978",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_2"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_6"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:262143e905f20d027150",
+      "entity_type": "OTHER",
+      "canonical_display_form": "FORM SF 86",
+      "surface_forms": [
+        {
+          "surface_form": "FORM SF 86",
+          "normalized_form": "form sf 86",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:5ce759c2bb203d9578ad",
+      "entity_type": "OTHER",
+      "canonical_display_form": "FRIENDLY FOREIGN GOVERNMENT",
+      "surface_forms": [
+        {
+          "surface_form": "FRIENDLY FOREIGN GOVERNMENT",
+          "normalized_form": "friendly foreign government",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:220277cdcc0ed67abb62",
+      "entity_type": "OTHER",
+      "canonical_display_form": "GAZPROM INVESTOR DAY",
+      "surface_forms": [
+        {
+          "surface_form": "GAZPROM INVESTOR DAY",
+          "normalized_form": "gazprom investor day",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:7e40cc83a2219f1343e9",
+      "entity_type": "OTHER",
+      "canonical_display_form": "GOVERNMENT",
+      "surface_forms": [
+        {
+          "surface_form": "GOVERNMENT",
+          "normalized_form": "government",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:65d1845d6bd6686369a1",
+      "entity_type": "OTHER",
+      "canonical_display_form": "GOVERNMENT OF ISRAEL",
+      "surface_forms": [
+        {
+          "surface_form": "GOVERNMENT OF ISRAEL",
+          "normalized_form": "government of israel",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:801fa024c14810dc9035",
+      "entity_type": "OTHER",
+      "canonical_display_form": "GOVERNMENT OF THE RUSSIAN FEDERATION",
+      "surface_forms": [
+        {
+          "surface_form": "GOVERNMENT OF THE RUSSIAN FEDERATION",
+          "normalized_form": "government of the russian federation",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_2"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_6"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:81c2ba8ca8bf57f97e0f",
+      "entity_type": "OTHER",
+      "canonical_display_form": "NEW ECONOMIC SCHOOL",
+      "surface_forms": [
+        {
+          "surface_form": "NEW ECONOMIC SCHOOL",
+          "normalized_form": "new economic school",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:1ef4b0e4f4962c143d9a",
+      "entity_type": "OTHER",
+      "canonical_display_form": "POLITICAL PARTY #1",
+      "surface_forms": [
+        {
+          "surface_form": "POLITICAL PARTY #1",
+          "normalized_form": "political party #1",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:e67eeba3357fe59ad37f",
+      "entity_type": "OTHER",
+      "canonical_display_form": "RIS",
+      "surface_forms": [
+        {
+          "surface_form": "RIS",
+          "normalized_form": "ris",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:8b0767300d969019f314",
+      "entity_type": "OTHER",
+      "canonical_display_form": "RUSSIA",
+      "surface_forms": [
+        {
+          "surface_form": "RUSSIA",
+          "normalized_form": "russia",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:a86a7b8e76123e6197a3",
+      "entity_type": "OTHER",
+      "canonical_display_form": "RUSSIAN FEDERATION",
+      "surface_forms": [
+        {
+          "surface_form": "RUSSIAN FEDERATION",
+          "normalized_form": "russian federation",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:263f6a3394fba82a3c06",
+      "entity_type": "OTHER",
+      "canonical_display_form": "RUSSIAN GOVERNMENT",
+      "surface_forms": [
+        {
+          "surface_form": "RUSSIAN GOVERNMENT",
+          "normalized_form": "russian government",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:42f8b5eac3d7a9cc3f1c",
+      "entity_type": "OTHER",
+      "canonical_display_form": "RUSSIAN INTELLIGENCE OFFICERS",
+      "surface_forms": [
+        {
+          "surface_form": "RUSSIAN INTELLIGENCE OFFICERS",
+          "normalized_form": "russian intelligence officers",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:a7c92e3bf8c3715d672d",
+      "entity_type": "OTHER",
+      "canonical_display_form": "SEPTEMBER 23RD NEWS ARTICLE",
+      "surface_forms": [
+        {
+          "surface_form": "SEPTEMBER 23RD NEWS ARTICLE",
+          "normalized_form": "september 23rd news article",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:8648d94269a975a6f37f",
+      "entity_type": "OTHER",
+      "canonical_display_form": "SEPTEMBER 26TH NEWS ARTICLE",
+      "surface_forms": [
+        {
+          "surface_form": "SEPTEMBER 26TH NEWS ARTICLE",
+          "normalized_form": "september 26th news article",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:1dfbf5382d4d75770f58",
+      "entity_type": "OTHER",
+      "canonical_display_form": "SOURCE #2",
+      "surface_forms": [
+        {
+          "surface_form": "SOURCE #2",
+          "normalized_form": "source #2",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:a73bec182eb672efa7d6",
+      "entity_type": "OTHER",
+      "canonical_display_form": "SUB SOURCE",
+      "surface_forms": [
+        {
+          "surface_form": "SUB SOURCE",
+          "normalized_form": "sub source",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:0fe266cb0aa73f1601ca",
+      "entity_type": "OTHER",
+      "canonical_display_form": "TURKEY",
+      "surface_forms": [
+        {
+          "surface_form": "TURKEY",
+          "normalized_form": "turkey",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:13c805df1281e63b2d6f",
+      "entity_type": "OTHER",
+      "canonical_display_form": "UNITED STATES",
+      "surface_forms": [
+        {
+          "surface_form": "UNITED STATES",
+          "normalized_form": "united states",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_2"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_2"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_6"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_8"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_8"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:fbf866dd1b44cdf2cebd",
+      "entity_type": "OTHER",
+      "canonical_display_form": "UNITED STATES DEPARTMENT OF STATE",
+      "surface_forms": [
+        {
+          "surface_form": "UNITED STATES DEPARTMENT OF STATE",
+          "normalized_form": "united states department of state",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:5cea17b390b523753513",
+      "entity_type": "OTHER",
+      "canonical_display_form": "UNITED STATES OF AMERICA",
+      "surface_forms": [
+        {
+          "surface_form": "UNITED STATES OF AMERICA",
+          "normalized_form": "united states of america",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_2"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_6"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:dc1c9714b222aeed3f8f",
+      "entity_type": "OTHER",
+      "canonical_display_form": "US",
+      "surface_forms": [
+        {
+          "surface_form": "US",
+          "normalized_form": "us",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:d7f45544d21e0e04c2cd",
+      "entity_type": "OTHER",
+      "canonical_display_form": "US DEPARTMENT OF STATE",
+      "surface_forms": [
+        {
+          "surface_form": "US DEPARTMENT OF STATE",
+          "normalized_form": "us department of state",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:other:a3c4c3e541ae6e41f0bb",
+      "entity_type": "OTHER",
+      "canonical_display_form": "US GOVERNMENT",
+      "surface_forms": [
+        {
+          "surface_form": "US GOVERNMENT",
+          "normalized_form": "us government",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:bbac7696ef88bdc352f6",
+      "entity_type": "PERSON",
+      "canonical_display_form": "ARKADIY DVORKOVICH",
+      "surface_forms": [
+        {
+          "surface_form": "ARKADIY DVORKOVICH",
+          "normalized_form": "arkadiy dvorkovich",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:a89b7c0fc6db473b3865",
+      "entity_type": "PERSON",
+      "canonical_display_form": "ATTORNEY GENERAL",
+      "surface_forms": [
+        {
+          "surface_form": "ATTORNEY GENERAL",
+          "normalized_form": "attorney general",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:22d50a58a7aff8ad2066",
+      "entity_type": "PERSON",
+      "canonical_display_form": "CANDIDATE #1",
+      "surface_forms": [
+        {
+          "surface_form": "CANDIDATE #1",
+          "normalized_form": "candidate #1",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:ec88c4c676ffd3b2c724",
+      "entity_type": "PERSON",
+      "canonical_display_form": "CANDIDATE #2",
+      "surface_forms": [
+        {
+          "surface_form": "CANDIDATE #2",
+          "normalized_form": "candidate #2",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:e380f2d97e67b82f8e96",
+      "entity_type": "PERSON",
+      "canonical_display_form": "CARTER W PAGE",
+      "surface_forms": [
+        {
+          "surface_form": "CARTER W PAGE",
+          "normalized_form": "carter w page",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_7",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_2"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_4"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_6"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:7425d1ae70e39fee1246",
+      "entity_type": "PERSON",
+      "canonical_display_form": "DIVYEKIN",
+      "surface_forms": [
+        {
+          "surface_form": "DIVYEKIN",
+          "normalized_form": "divyekin",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:9ef39e3678cd94d253a8",
+      "entity_type": "PERSON",
+      "canonical_display_form": "DMITRIY PESKOV",
+      "surface_forms": [
+        {
+          "surface_form": "DMITRIY PESKOV",
+          "normalized_form": "dmitriy peskov",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:116d67854ffc2de93c03",
+      "entity_type": "PERSON",
+      "canonical_display_form": "EVGENY BURYAKOV",
+      "surface_forms": [
+        {
+          "surface_form": "EVGENY BURYAKOV",
+          "normalized_form": "evgeny buryakov",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:934f85a5fedb51a7eb78",
+      "entity_type": "PERSON",
+      "canonical_display_form": "G PAGE",
+      "surface_forms": [
+        {
+          "surface_form": "G PAGE",
+          "normalized_form": "g page",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:46e9e15de16e7856a3ff",
+      "entity_type": "PERSON",
+      "canonical_display_form": "GEORGE PAPADOPOULOS",
+      "surface_forms": [
+        {
+          "surface_form": "GEORGE PAPADOPOULOS",
+          "normalized_form": "george papadopoulos",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:a707048c6f7d51728806",
+      "entity_type": "PERSON",
+      "canonical_display_form": "IGOR SPORYSHEV",
+      "surface_forms": [
+        {
+          "surface_form": "IGOR SPORYSHEV",
+          "normalized_form": "igor sporyshev",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:6b0f75a336f8ebba03bf",
+      "entity_type": "PERSON",
+      "canonical_display_form": "KLIMENTOV",
+      "surface_forms": [
+        {
+          "surface_form": "KLIMENTOV",
+          "normalized_form": "klimentov",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:0d503419266474e5af71",
+      "entity_type": "PERSON",
+      "canonical_display_form": "MICHAEL FLYNN",
+      "surface_forms": [
+        {
+          "surface_form": "MICHAEL FLYNN",
+          "normalized_form": "michael flynn",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:35a26f1076f69e98d1d4",
+      "entity_type": "PERSON",
+      "canonical_display_form": "PAGE",
+      "surface_forms": [
+        {
+          "surface_form": "PAGE",
+          "normalized_form": "page",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_3"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_5"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_5",
+              "corpus_doc_id": "Pair_7"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:67e267680bfd6f8395d8",
+      "entity_type": "PERSON",
+      "canonical_display_form": "PAPADOPOULOS",
+      "surface_forms": [
+        {
+          "surface_form": "PAPADOPOULOS",
+          "normalized_form": "papadopoulos",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_0",
+              "corpus_doc_id": "Pair_1"
+            },
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_1",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:7e601d763b54319c76e7",
+      "entity_type": "PERSON",
+      "canonical_display_form": "PRESIDENT TRUMP",
+      "surface_forms": [
+        {
+          "surface_form": "PRESIDENT TRUMP",
+          "normalized_form": "president trump",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:5637b9f2840967a24453",
+      "entity_type": "PERSON",
+      "canonical_display_form": "PUTIN",
+      "surface_forms": [
+        {
+          "surface_form": "PUTIN",
+          "normalized_form": "putin",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_4",
+              "corpus_doc_id": "Pair_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:aca5056a959e9e153c61",
+      "entity_type": "PERSON",
+      "canonical_display_form": "SECHIN",
+      "surface_forms": [
+        {
+          "surface_form": "SECHIN",
+          "normalized_form": "sechin",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_2",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:1c4ddf505693cc836614",
+      "entity_type": "PERSON",
+      "canonical_display_form": "US PRESIDENT",
+      "surface_forms": [
+        {
+          "surface_form": "US PRESIDENT",
+          "normalized_form": "us president",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_6",
+              "corpus_doc_id": "Pair_7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_entity_id": "fisc_unredacted:person:4a30e144793fcc083af8",
+      "entity_type": "PERSON",
+      "canonical_display_form": "VICTOR PODOBNYY",
+      "surface_forms": [
+        {
+          "surface_form": "VICTOR PODOBNYY",
+          "normalized_form": "victor podobnyy",
+          "alias_type": "CANONICAL",
+          "confidence": 0.5,
+          "review_state": "CANDIDATE",
+          "provenance": [
+            {
+              "derivation_method": "EXTRACTION",
+              "source_table": "entities.csv",
+              "source_row_id": "ent_3",
+              "corpus_doc_id": "Pair_5"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
