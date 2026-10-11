@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Matryoshka | Iran Site Visit</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2313242a'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23b84d36' stroke-width='7'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-size='24' font-family='serif' font-weight='700' fill='%23fffaf0'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="boot" class="boot-screen">
+    <div class="boot-mark"><span></span><span></span><span></span></div>
+    <p>Preparing the Iran corpus map</p>
+  </div>
+
+  <section id="home" class="home-screen" hidden>
+    <div class="home-orbit orbit-a"></div>
+    <div class="home-orbit orbit-b"></div>
+    <header class="home-header">
+      <div class="brand-lockup">
+        <div class="brand-kicker">MATRYOSHKA</div>
+        <div class="brand-name">Corpus intelligence, with the evidence trail open.</div>
+      </div>
+      <div class="site-badge">Site visit demo</div>
+    </header>
+    <main class="home-main">
+      <div class="home-copy">
+        <p class="eyebrow">Prepared collection</p>
+        <h1>Explore broadly.<br><em>Verify narrowly.</em></h1>
+        <p class="home-intro">Move from the shape of a document collection to the exact cable passages behind an analyst decision.</p>
+      </div>
+      <div class="corpus-console">
+        <label for="corpus-select">Choose a corpus</label>
+        <div class="select-wrap">
+          <select id="corpus-select">
+            <option value="iran">Iran Foreign Policy Cables</option>
+          </select>
+          <span class="select-caret">v</span>
+        </div>
+        <div id="home-stats" class="home-stats"></div>
+        <div class="launch-grid">
+          <button class="launch-card" data-launch="explorer">
+            <span class="launch-number">01</span>
+            <strong>Explore the corpus</strong>
+            <small>Narratives, communities, semantic nodes, relations, and sources</small>
+            <span class="launch-action">Open Matryoshka <b>-&gt;</b></span>
+          </button>
+          <button class="launch-card accent" data-launch="workbench">
+            <span class="launch-number">02</span>
+            <strong>Run an analyst task</strong>
+            <small>Reconstruction, hypothesis assessment, and redaction recovery</small>
+            <span class="launch-action">Open Workbench <b>-&gt;</b></span>
+          </button>
+        </div>
+      </div>
+    </main>
+    <footer class="home-footer">
+      <span>3,270 cables</span><span>1977-1979</span><span>Auditable provenance</span>
+    </footer>
+  </section>
+
+  <section id="shell" class="app-shell" hidden>
+    <header class="app-header">
+      <button id="home-button" class="logo-button" aria-label="Return home">
+        <span class="logo-glyph">M</span>
+        <span><b>Matryoshka</b><small>Iran corpus</small></span>
+      </button>
+      <nav class="mode-nav" aria-label="Demo mode">
+        <button data-mode="explorer" class="active">Corpus explorer</button>
+        <button data-mode="workbench">Evidence workbench</button>
+      </nav>
+      <div id="corpus-chip" class="corpus-chip"></div>
+    </header>
+
+    <main id="explorer-screen" class="explorer-screen">
+      <section class="graph-column">
+        <div class="graph-toolbar">
+          <div id="breadcrumbs" class="breadcrumbs"></div>
+          <div class="graph-controls">
+            <div id="path-peek" class="path-peek"></div>
+            <button id="graph-back" class="icon-button" title="One level up">Back</button>
+            <button id="graph-fit" class="icon-button" title="Fit graph">Fit</button>
+            <button id="graph-load-complete" class="icon-button" title="Load every node assigned to this community" hidden>Load all</button>
+            <label class="edge-toggle"><input id="labels-toggle" type="checkbox" checked> Labels</label>
+            <label class="edge-toggle"><input id="connected-toggle" type="checkbox"> Connected only</label>
+          </div>
+          <div class="global-search">
+            <div class="search-filter">
+              <button id="search-filter-button" type="button" aria-expanded="false">All types</button>
+              <div id="search-filter-menu" class="search-filter-menu" hidden>
+                <div class="search-filter-actions"><button data-search-any type="button">All types</button><span>Checked types are an exact OR filter</span></div>
+                <label><input type="checkbox" value="person"> People</label>
+                <label><input type="checkbox" value="organization"> Organizations</label>
+                <label><input type="checkbox" value="location"> Places</label>
+                <label><input type="checkbox" value="event"> Events</label>
+                <label><input type="checkbox" value="claim"> Claims</label>
+                <label><input type="checkbox" value="relation"> Relations</label>
+                <label><input type="checkbox" value="narrative"> Narratives</label>
+                <label><input type="checkbox" value="community"> Communities</label>
+                <label><input type="checkbox" value="document"> Documents</label>
+                <p>Prefix syntax also works and overrides these boxes for one query: <code>PERSON: Shah</code> or <code>PERSON|LOCATION: Pahlavi</code>.</p>
+              </div>
+            </div>
+            <span class="search-icon"></span>
+            <input id="global-search" type="search" autocomplete="off" placeholder="Search nodes, claims, communities, or cable IDs">
+            <kbd>/</kbd>
+            <div id="search-results" class="search-results"></div>
+          </div>
+        </div>
+        <div id="graph-stage" class="graph-stage">
+          <canvas id="graph-canvas"></canvas>
+          <div id="graph-tooltip" class="graph-tooltip" hidden></div>
+          <aside id="graph-guide" class="graph-guide" hidden></aside>
+          <div id="guide-document-arrival" class="guide-document-arrival" hidden>
+            <small>Traversal destination</small>
+            <b id="guide-document-id">Source cable</b>
+            <span id="guide-document-detail">Opening cited passage</span>
+          </div>
+          <div class="level-caption">
+            <span id="level-name"></span>
+            <p id="level-description"></p>
+          </div>
+          <div id="graph-legend" class="graph-legend"></div>
+        </div>
+      </section>
+      <aside id="graph-inspector" class="graph-inspector"></aside>
+    </main>
+
+    <main id="workbench-screen" class="workbench-screen" hidden>
+      <aside class="case-rail">
+        <div class="rail-heading">
+          <p class="eyebrow">Audited examples</p>
+          <h2>Iran casebook</h2>
+          <p>Recorded outcomes remain separate from fresh task-aware retrieval.</p>
+        </div>
+        <div id="workbench-modes" class="workbench-modes">
+          <button class="active" data-workbench-mode="recorded">Recorded cases</button>
+          <button data-workbench-mode="live">Live task</button>
+        </div>
+        <div id="task-filters" class="task-filters"></div>
+        <div id="case-list" class="case-list"></div>
+        <div class="rail-contract">
+          <b>Authority rule</b>
+          <p>Graph paths discover. Source passages evidence. Prose explains.</p>
+        </div>
+      </aside>
+      <section id="case-workspace" class="case-workspace"></section>
+    </main>
+  </section>
+
+  <aside id="source-drawer" class="source-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div><p id="drawer-kicker" class="eyebrow">Source cable</p><h2 id="source-title">Document</h2></div>
+      <button id="source-close" class="drawer-close" aria-label="Close source">x</button>
+    </div>
+    <div id="source-meta" class="source-meta"></div>
+    <div id="source-body" class="source-body"></div>
+  </aside>
+  <div id="drawer-scrim" class="drawer-scrim" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

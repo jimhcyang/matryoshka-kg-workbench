@@ -18,6 +18,24 @@ The canonical manuals are:
 - [`docs/KNOWLEDGE_GRAPH_MANUAL.md`](docs/KNOWLEDGE_GRAPH_MANUAL.md)
 - [`docs/MATRYOSHKA_WORKBENCH_MANUAL.md`](docs/MATRYOSHKA_WORKBENCH_MANUAL.md)
 
+## Iran Analyst Demo
+
+The repository also ships a browser-only Iran corpus demonstration in
+[`site/`](site/). It combines a hierarchical Matryoshka graph explorer with a
+three-task evidence workbench for reconstruction, hypothesis assessment, and
+person redaction.
+
+After GitHub Pages is enabled with **GitHub Actions** as its source, pushes to
+`main` deploy:
+
+<https://jimhcyang.github.io/matryoshka-kg-workbench/>
+
+The hosted build replays nine audited recorded cases and three distinct
+precomputed live-retrieval packets. Arbitrary new queries and complete
+community expansion require the full local research workspace; the hosted UI
+labels those limits rather than simulating execution. See
+[`docs/IRAN_SITE_VISIT_DEMO.md`](docs/IRAN_SITE_VISIT_DEMO.md).
+
 ## Requirements
 
 - Python 3.11 is recommended.
