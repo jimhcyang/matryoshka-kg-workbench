@@ -1068,19 +1068,28 @@ function bindCanvas() {
       drawGraph(); return;
     }
     const hit = hitTest(point);
+    canvas.classList.toggle("node-target", hit?.kind === "node");
+    canvas.classList.toggle("edge-target", hit?.kind === "edge");
     const previous = state.hovered?.data?.id;
     state.hovered = hit;
     if (hit?.data?.id !== previous) drawGraph();
     renderTooltip(hit, event.clientX - rect.left, event.clientY - rect.top);
   });
-  canvas.addEventListener("pointerleave", () => { if (!state.dragging) { state.hovered = null; $("#graph-tooltip").hidden = true; drawGraph(); } });
+  canvas.addEventListener("pointerleave", () => {
+    canvas.classList.remove("node-target", "edge-target");
+    if (!state.dragging) { state.hovered = null; $("#graph-tooltip").hidden = true; drawGraph(); }
+  });
   canvas.addEventListener("pointerdown", (event) => {
     try { canvas.setPointerCapture(event.pointerId); } catch (_error) { /* Capture is optional. */ }
     canvas.classList.add("dragging");
     const rect = canvas.getBoundingClientRect(); const point = {x: event.clientX - rect.left, y: event.clientY - rect.top};
     const hit = hitTest(point);
     state.longPressTriggered = false;
-    state.dragging = hit?.kind === "node" ? {kind: "node", id: hit.data.id, moved: false, start: point} : {kind: "pan", pointer: point, origin: {...state.transform}};
+    state.dragging = hit?.kind === "node"
+      ? {kind: "node", id: hit.data.id, moved: false, start: point}
+      : hit?.kind === "edge"
+        ? {kind: "edge", id: hit.data.id, start: point}
+        : {kind: "pan", pointer: point, start: point, origin: {...state.transform}};
     if (hit?.kind === "node" && state.level !== "nodes") {
       clearTimeout(state.longPressTimer);
       state.longPressTimer = setTimeout(() => {
@@ -1096,7 +1105,7 @@ function bindCanvas() {
     const drag = state.dragging; state.dragging = null;
     if (!drag) return;
     const rect = canvas.getBoundingClientRect(); const point = {x: event.clientX - rect.left, y: event.clientY - rect.top};
-    state.suppressClick = state.longPressTriggered || (drag.start ? Math.hypot(point.x - drag.start.x, point.y - drag.start.y) > 5 : true);
+    state.suppressClick = state.longPressTriggered || Math.hypot(point.x - drag.start.x, point.y - drag.start.y) > 5;
   });
   canvas.addEventListener("click", (event) => {
     if (state.dragging) return;
@@ -1124,7 +1133,9 @@ function hitTest(point) {
     const radius = radiusFor(node, graph.nodes) * Math.sqrt(state.transform.scale) + 7;
     if (Math.hypot(point.x - at.x, point.y - at.y) <= radius) return {kind: "node", data: node};
   }
-  let closest = null; let best = 8;
+  // Lines are visually narrow, but their analyst-facing hit target should not be.
+  // Higher hierarchy levels are sparse enough to support a wider target.
+  let closest = null; let best = state.level === "nodes" ? 11 : 15;
   graph.edges.forEach((edge) => {
     const source = positions.get(edge.source); const target = positions.get(edge.target); if (!source || !target) return;
     const distance = pointToSegment(point, source, target);
@@ -1229,7 +1240,7 @@ function renderNodeInspector(node) {
     ${inspectorLegendMarkup()}
     <section class="inspector-section"><h3>Scale in context</h3><div class="metric-stack">${metrics.map(([value,total,label,detail]) => metricBar(value,total,label,detail)).join("")}</div></section>
     ${node.kind === "node" ? hierarchyPlacementMarkup(node) : ""}
-    ${connections.length ? `<section class="inspector-section"><h3>Local neighborhood</h3>${localNetworkSvg(node, visibleConnections, connections.length)}<div class="neighbor-list">${visibleConnections.map((item) => `<button class="neighbor-link" data-select-node="${esc(item.node.id)}"><span style="--neighbor:${colorFor(item.node)}"></span><b>${esc(item.node.label)}</b><small>${formatNumber(item.edge.total_count || 1)} relation${Number(item.edge.total_count || 1) === 1 ? "" : "s"}</small></button>`).join("")}</div>${neighborhoodControls(visibleConnections.length, displayableConnections.length, connections.length)}</section>` : ""}
+    ${connections.length ? `<section class="inspector-section"><h3>Local neighborhood</h3>${localNetworkSvg(node, visibleConnections, connections.length)}<div class="neighbor-list">${visibleConnections.map((item) => `<div class="neighbor-row"><button class="neighbor-link" data-select-node="${esc(item.node.id)}"><span style="--neighbor:${colorFor(item.node)}"></span><b>${esc(item.node.label)}</b><small>${formatNumber(item.edge.total_count || 1)} relation${Number(item.edge.total_count || 1) === 1 ? "" : "s"}</small></button><button class="neighbor-edge" data-select-edge="${esc(item.edge.id)}" aria-label="Inspect connection to ${esc(item.node.label)}">Inspect link</button></div>`).join("")}</div>${neighborhoodControls(visibleConnections.length, displayableConnections.length, connections.length)}</section>` : ""}
     ${node.kind !== "node" && connections.length ? regionBridgeMarkup(connections) : ""}
     ${profileValues.length ? `<section class="inspector-section"><h3>Explore related concepts</h3><div class="profile-chips">${profileValues.map((value) => `<button data-profile-query="${esc(value)}">${esc(compact(value, 72))}</button>`).join("")}</div></section>` : ""}
     ${node.kind === "node" && snippets.length ? `<section class="inspector-section"><h3>Where this connection appears</h3>${snippets.map((item) => evidenceCard(item, node, item.neighbor)).join("")}</section>` : ""}
@@ -1282,7 +1293,7 @@ function neighborhoodControls(shown, displayable, total) {
 
 function regionBridgeMarkup(connections) {
   const rows = connections.slice(0, Math.min(state.neighborLimit, 6));
-  return `<section class="inspector-section region-bridges"><h3>Why these regions connect</h3><p class="inspector-summary">A hierarchy edge is not a free-text similarity claim. It aggregates semantic-node relations crossing the two regions. The examples below name those lower-level endpoints and retain their cable provenance.</p>${rows.map(({edge,node}) => `<article class="bridge-card"><button class="bridge-neighbor" data-select-node="${esc(node.id)}"><span>Connected ${esc(nodeTypeLabel(node))}</span><b>${esc(node.label)}</b><small>${formatNumber(edge.total_count || 0)} underlying relations / ${Number(edge.weight || 0).toFixed(2)} aggregate weight</small></button>${(edge.evidence || []).slice(0,2).map((item) => evidenceCard(item, null, null)).join("") || `<p>No text-bearing relation was retained in this bounded preview. Select the connecting line for its relation mix.</p>`}</article>`).join("")}</section>`;
+  return `<section class="inspector-section region-bridges"><h3>Why these regions connect</h3><p class="inspector-summary">A hierarchy edge is not a free-text similarity claim. It aggregates semantic-node relations crossing the two regions. Open the connection to inspect its scale, retained relation types, lower-level endpoints, and cable provenance.</p>${rows.map(({edge,node}) => `<article class="bridge-card"><button class="bridge-neighbor" data-select-node="${esc(node.id)}"><span>Connected ${esc(nodeTypeLabel(node))}</span><b>${esc(node.label)}</b><small>${formatNumber(edge.total_count || 0)} underlying relations / ${Number(edge.weight || 0).toFixed(2)} aggregate weight</small></button><button class="bridge-edge" data-select-edge="${esc(edge.id)}">Inspect this connection</button>${(edge.evidence || []).slice(0,2).map((item) => evidenceCard(item, null, null)).join("") || `<p>No text-bearing relation was retained in this bounded preview. Open the connection for its aggregate structure.</p>`}</article>`).join("")}</section>`;
 }
 
 function metricBar(value, total, label, detail) {
@@ -1312,6 +1323,11 @@ function bindInspectorActions(root) {
     if (!node) return;
     state.selected = {kind: "node", data: node}; state.neighborLimit = NEIGHBOR_STEP; renderInspector(); drawGraph();
   }));
+  $$('[data-select-edge]', root).forEach((button) => button.addEventListener("click", () => {
+    const edge = state.graph?.graph.edges.find((item) => item.id === button.dataset.selectEdge);
+    if (!edge) return;
+    state.selected = {kind: "edge", data: edge}; state.edgePage = 0; renderInspector(); drawGraph();
+  }));
   $$('[data-profile-query]', root).forEach((button) => button.addEventListener("click", () => {
     $("#global-search").value = button.dataset.profileQuery; state.searchScopes = ["all"]; updateSearchFilterLabel(); runSearch(button.dataset.profileQuery);
   }));
@@ -1328,17 +1344,76 @@ function renderEdgeInspector(edge) {
   const visibleWeights = state.graph.graph.edges.map((item) => Number(item.weight || 0));
   const maxWeight = Math.max(1, ...visibleWeights);
   const maxCount = Math.max(1, ...state.graph.graph.edges.map((item) => Number(item.total_count || 1)));
-  panel.innerHTML = `<div class="inspector-title"><div class="type-line">Connection provenance</div><h2>${esc(titleCase(relations[0]?.[0] || edge.relation || "Related evidence"))}</h2></div>
-    <div class="endpoint-pair"><button class="endpoint" data-select-node="${esc(source?.id || edge.source)}"><small>Endpoint A</small><b>${esc(source?.label || edge.source)}</b></button><div class="endpoint-arrow">-&gt;</div><button class="endpoint" data-select-node="${esc(target?.id || edge.target)}"><small>Endpoint B</small><b>${esc(target?.label || edge.target)}</b></button></div>
-    <section class="inspector-section"><h3>Strength in this level</h3><div class="metric-stack">${metricBar(edge.total_count || evidence.length, maxCount, "underlying relations", `${formatNumber(edge.total_count || evidence.length)} aggregated lower-level links`)}${metricBar(edge.weight || 0, maxWeight, "aggregate strength", `${Number(edge.weight || 0).toFixed(2)} relative edge weight`)}</div></section>
-    <section class="inspector-section"><h3>Relation mix</h3><div class="relation-tags">${relations.map(([name,count]) => `<span class="relation-tag">${esc(titleCase(name))} ${count > 1 ? `x${count}` : ""}</span>`).join("") || `<span class="relation-tag">Corpus co-connection</span>`}</div></section>
-    <section class="inspector-section"><h3>Strongest source relations</h3>${shown.length ? shown.map((item) => evidenceCard(item, source, target)).join("") : `<p class="inspector-summary">This aggregate hierarchy link has no direct text-bearing edge in the bounded preview. Its weight comes from lower-level corpus connections.</p>`}</section>
+  const scope = edgeScopeDetails(edge, source, target, evidence);
+  const direct = state.level === "nodes";
+  const countLabel = direct ? "stored edge instances" : "underlying relations";
+  const countDetail = direct
+    ? `${formatNumber(edge.total_count || 1)} direct graph edge`
+    : `${formatNumber(edge.total_count || evidence.length)} aggregated lower-level links`;
+  const weightLabel = direct ? "relation weight" : "aggregate strength";
+  panel.innerHTML = `<div class="inspector-title"><div class="type-line">${esc(scope.label)}</div><h2>${esc(scope.heading)}</h2></div>
+    <p class="edge-scope-explanation">${esc(scope.explanation)}</p>
+    <div class="endpoint-pair"><button class="endpoint" data-select-node="${esc(source?.id || edge.source)}"><small>${esc(nodeTypeLabel(source || {kind:state.level === "nodes" ? "node" : state.level.slice(0,-1)}))} A</small><b>${esc(source?.label || edge.source)}</b><span>${esc(endpointScale(source))}</span></button><div class="endpoint-arrow">${direct ? "-&gt;" : "&harr;"}</div><button class="endpoint" data-select-node="${esc(target?.id || edge.target)}"><small>${esc(nodeTypeLabel(target || {kind:state.level === "nodes" ? "node" : state.level.slice(0,-1)}))} B</small><b>${esc(target?.label || edge.target)}</b><span>${esc(endpointScale(target))}</span></button></div>
+    <section class="inspector-section"><h3>What this line summarizes</h3><div class="connection-facts">${scope.facts.map(([value,label]) => `<article><b>${esc(value)}</b><span>${esc(label)}</span></article>`).join("")}</div></section>
+    <section class="inspector-section"><h3>Strength in this level</h3><div class="metric-stack">${metricBar(edge.total_count || evidence.length, maxCount, countLabel, countDetail)}${metricBar(edge.weight || 0, maxWeight, weightLabel, `${Number(edge.weight || 0).toFixed(2)} relative edge weight`)}</div></section>
+    <section class="inspector-section"><h3>Retained relation examples</h3><p class="inspector-summary">${direct ? "This is the typed relation stored for the selected semantic edge." : "These labels summarize the strongest provenance examples retained for display, not every relation counted in the aggregate."}</p><div class="relation-tags">${relations.map(([name,count]) => `<span class="relation-tag">${esc(titleCase(name))} ${count > 1 ? `x${count}` : ""}</span>`).join("") || `<span class="relation-tag">Corpus co-connection</span>`}</div></section>
+    <section class="inspector-section"><h3>${state.level === "nodes" ? "Direct source provenance" : "Strongest lower-level bridges"}</h3>${shown.length ? shown.map((item) => evidenceCard(item, source, target)).join("") : `<p class="inspector-summary">This connection has no text-bearing example in the bounded display payload. Its aggregate count still comes from stored lower-level graph links.</p>`}</section>
     ${evidence.length > pageSize ? `<div class="pager"><button id="edge-prev" ${state.edgePage === 0 ? "disabled" : ""}>Previous</button><span>${state.edgePage * pageSize + 1}-${Math.min((state.edgePage + 1) * pageSize, evidence.length)} of ${formatNumber(edge.total_count || evidence.length)}${edge.total_count > evidence.length ? ` / top ${evidence.length} retained` : ""}</span><button id="edge-next" ${state.edgePage >= pageCount - 1 ? "disabled" : ""}>Next</button></div>` : ""}
     <details class="technical-details"><summary>Technical identity</summary><div class="technical-id">${esc(edge.id)}</div></details>`;
   panel.scrollTop = 0;
   $("#edge-prev", panel)?.addEventListener("click", () => { state.edgePage -= 1; renderEdgeInspector(edge); });
   $("#edge-next", panel)?.addEventListener("click", () => { state.edgePage += 1; renderEdgeInspector(edge); });
   bindInspectorActions(panel);
+}
+
+function endpointScale(node) {
+  if (!node) return "Open endpoint";
+  if (node.kind === "narrative") return `${formatNumber(node.community_count)} communities / ${formatNumber(node.document_count)} documents`;
+  if (node.kind === "community") return `${formatNumber(node.member_count)} semantic nodes / ${formatNumber(node.document_count)} documents`;
+  return nodeTypeLabel(node) || "Semantic node";
+}
+
+function edgeScopeDetails(edge, source, target, evidence) {
+  const documents = new Set(evidence.map((item) => item.doc_id).filter(Boolean)).size;
+  if (state.level === "narratives") {
+    return {
+      label:"Narrative bridge",
+      heading:"Cross-narrative connection",
+      explanation:"This line aggregates graph relations whose semantic endpoints belong to communities assigned to different narratives. The narrative labels are organizational summaries; the cited lower-level relations are what create the bridge.",
+      facts:[
+        [formatNumber(edge.community_link_count || 0), "community-pair links"],
+        [formatNumber(edge.total_count || 0), "cross-narrative semantic relations"],
+        [formatNumber(documents), "documents in retained examples"],
+      ],
+    };
+  }
+  if (state.level === "communities") {
+    const narrative = indexes.narrative.get(source?.narrative_id || target?.narrative_id || state.narrativeId);
+    return {
+      label:"Community bridge",
+      heading:"Cross-community connection",
+      explanation:`This line aggregates graph relations crossing two communities inside ${narrative?.label || "the selected narrative"}. Community membership organizes the corpus; it does not prevent relations from crossing the partition.`,
+      facts:[
+        [formatNumber(edge.total_count || 0), "cross-community semantic relations"],
+        [formatNumber(evidence.length), "strongest examples retained"],
+        [formatNumber(documents), "documents in retained examples"],
+      ],
+    };
+  }
+  return {
+    label:"Direct semantic relation",
+    heading:titleCase(edge.relation || relationsLabel(edge)),
+    explanation:"At the semantic-node level, this line is a stored graph relation rather than a hierarchy aggregate. Direction follows endpoint A to endpoint B; the source passage below is the provenance for that relation.",
+    facts:[
+      [titleCase(edge.relation || relationsLabel(edge)), "stored relation type"],
+      [Number(edge.weight || 0).toFixed(2), "relation weight"],
+      [formatNumber(documents), "provenance documents"],
+    ],
+  };
+}
+
+function relationsLabel(edge) {
+  return Object.keys(edge.relation_counts || {})[0] || "connected";
 }
 
 function evidenceCard(item, source, target) {
@@ -1630,8 +1705,8 @@ function recordedRouteGuide(item, path) {
       paragraphId:path.paragraph_id || lastSourceStep?.paragraph_id || "",
       label:path.doc_id || "Unbound candidate",
       detail:path.citation_quarantined
-        ? `Eligible candidate cable reached at rank ${path.rank || "-"}, but its raw passage did not align with the atom strongly enough to certify evidence. It remains retrieval context only.`
-        : `Eligible candidate cable reached at rank ${path.rank || "-"}. Retrieval discovery is not proof.`,
+        ? `Filtered candidate cable reached at rank ${path.rank || "-"}, but its raw passage did not align with the atom strongly enough to certify evidence. It remains retrieval context only.`
+        : `Filtered candidate cable reached at rank ${path.rank || "-"}. Retrieval discovery is not proof.`,
     });
   }
   return {
@@ -1807,7 +1882,7 @@ function renderLiveWorkbench() {
   const provenance = draft.sourceDocId
     ? `Prepared from held-out ${draft.sourceDocId}; that cable is independently excluded and the cutoff is strict-before.`
     : "Custom analyst target; no source document or known ground truth is assumed.";
-  $("#case-workspace").innerHTML = `<header class="case-hero live-hero"><p class="eyebrow">Live ${esc(task.label)} / atom-first retrieval</p><h1>${esc(task.input)}</h1><p>${esc(provenance)}</p><div class="case-status-row"><span class="status-pill outcome">${esc(task.label)} task</span><span class="status-pill">Eligible evidence only</span><span class="status-pill">Retrieval is not proof</span></div></header><div class="workspace-body"><section class="live-query-card"><label for="live-query">${esc(task.input)}</label><textarea id="live-query" rows="4" placeholder="Enter a ${esc(task.label.toLowerCase())} target">${esc(prior?.query || draft.query || "")}</textarea>${preparedAtomsMarkup(draft)}<div class="live-query-options"><label>Task <select id="live-task">${Object.entries(liveTaskMeta).map(([key,value]) => `<option value="${key}" ${key === state.liveTask ? "selected" : ""}>${esc(value.label)}</option>`).join("")}</select></label><label>Evidence strictly before <input id="live-cutoff" type="date" value="${esc(prior?.eligibility?.cutoff || draft.date || "")}"></label><label>Ranked cables per method <select id="live-limit">${displayLimitOptions(rankedLimit)}</select></label><button id="run-live-query" class="primary-action">Run ${esc(task.label.toLowerCase())}</button></div><p>Each atom starts an independent document and graph route. Rankings are bounded display lists; passage extraction balances atoms across the union of both candidate lists.</p></section><div id="live-results">${prior ? liveResultsMarkup(prior) : liveEmptyMarkup()}</div></div>`;
+  $("#case-workspace").innerHTML = `<header class="case-hero live-hero"><p class="eyebrow">Live ${esc(task.label)} / atom-first retrieval</p><h1>${esc(task.input)}</h1><p>${esc(provenance)}</p><div class="case-status-row"><span class="status-pill outcome">${esc(task.label)} task</span><span class="status-pill">Filtered evidence only</span><span class="status-pill">Retrieval is not proof</span></div></header><div class="workspace-body"><section class="live-query-card"><label for="live-query">${esc(task.input)}</label><textarea id="live-query" rows="4" placeholder="Enter a ${esc(task.label.toLowerCase())} target">${esc(prior?.query || draft.query || "")}</textarea>${preparedAtomsMarkup(draft)}<div class="live-query-options"><label>Task <select id="live-task">${Object.entries(liveTaskMeta).map(([key,value]) => `<option value="${key}" ${key === state.liveTask ? "selected" : ""}>${esc(value.label)}</option>`).join("")}</select></label><label>Evidence strictly before <input id="live-cutoff" type="date" value="${esc(prior?.eligibility?.cutoff || draft.date || "")}"></label><label>Ranked cables per method <select id="live-limit">${displayLimitOptions(rankedLimit)}</select></label><button id="run-live-query" class="primary-action">Run ${esc(task.label.toLowerCase())}</button></div><p>Each atom starts an independent document and graph route. Rankings are bounded display lists; passage extraction balances atoms across the union of both candidate lists.</p></section><div id="live-results">${prior ? liveResultsMarkup(prior) : liveEmptyMarkup()}</div></div>`;
   $("#run-live-query").addEventListener("click", runLiveQuery);
   $("#live-task").addEventListener("change", (event) => {
     state.liveTask = event.target.value;
@@ -1821,7 +1896,7 @@ function renderLiveWorkbench() {
 
 function liveEmptyMarkup() {
   const task = liveTaskMeta[state.liveTask];
-  return `<section class="live-empty"><b>Ready for ${esc(task.label.toLowerCase())}</b><p>The result will expose each atom, compare document-only and graph-assisted candidates, retain complete route provenance, and show verbatim eligible cable passages.</p></section>`;
+  return `<section class="live-empty"><b>Ready for ${esc(task.label.toLowerCase())}</b><p>The result will expose each atom, compare document-only and graph-assisted candidates, retain complete route provenance, and show verbatim policy-filtered cable passages.</p></section>`;
 }
 
 async function runLiveQuery() {
@@ -1885,7 +1960,7 @@ function liveResultsMarkup(payload) {
   }).join("")}</div>`;
   return `<div class="live-contract"><b>${esc(task.label)} retrieval packet / provisional corpus assessment</b><span>No hidden answer was used. ${esc(payload.contract.proof)} ${esc(sourceRule)}</span></div>${companion}
     ${workflowStep("01", `${task.label} target and atomic retrieval plan`, payload.contract.parser, atomBlock)}
-    ${workflowStep("02", "Eligible evidence universe", "CFPF metadata policy", `<div class="eligibility-summary"><b>${formatNumber(eligibility.eligible_documents)} cables remained</b><span>${esc(eligibility.date_rule)}; ${esc(eligibility.classification_rule)}; ${esc(eligibility.handling_rule)}.</span></div><div class="filter-accounting"><span><b>${formatNumber(eligibility.total_documents)}</b> corpus</span><span><b>${formatNumber(eligibility.excluded_classification)}</b> class-excluded</span><span><b>${formatNumber(eligibility.excluded_noforn)}</b> NOFORN</span><span><b>${formatNumber(eligibility.excluded_date_after_prior_gates)}</b> date-excluded</span></div>`)}
+    ${workflowStep("02", "Filtered evidence universe", "CFPF metadata policy", `<div class="eligibility-summary"><b>${formatNumber(eligibility.eligible_documents)} cables remained</b><span>${esc(eligibility.date_rule)}; ${esc(eligibility.classification_rule)}; ${esc(eligibility.handling_rule)}.</span></div><div class="filter-accounting"><span><b>${formatNumber(eligibility.total_documents)}</b> corpus</span><span><b>${formatNumber(eligibility.excluded_classification)}</b> class-excluded</span><span><b>${formatNumber(eligibility.excluded_noforn)}</b> NOFORN</span><span><b>${formatNumber(eligibility.excluded_date_after_prior_gates)}</b> date-excluded</span></div>`)}
     ${workflowStep("03", "Candidate cables: document-only versus graph-assisted", "Parallel deterministic retrieval", liveRankingMarkup(payload))}
     ${workflowStep("04", "Atom-specific graph retrieval paths", "Semantic seeds plus one hop", liveGraphPathsMarkup(payload))}
     ${workflowStep("05", "Candidate source passages", "Verbatim corpus text", livePassagesMarkup(payload))}
@@ -1899,7 +1974,7 @@ function liveDispositionMarkup(payload) {
   const percent = Math.round(ratio * 100);
   const atomCards = (assessment.atom_assessments || []).map((atom) => {
     const citation = atom.citations?.[0];
-    return `<article class="assessment-atom ${esc(atom.band)}"><header><b>${esc(atom.question_id)}</b><span>${esc(titleCase(atom.band))}</span></header><p>${esc(atom.text)}</p><small>Best eligible passage overlap ${Number(atom.max_passage_score || 0).toFixed(3)}</small>${citation ? `<button class="source-link" data-source-doc="${esc(citation.doc_id)}" data-source-paragraph="${esc(citation.paragraph_id)}" data-highlight="${esc(salientTerms(atom.text).join("||"))}">Inspect strongest lead / ${esc(citation.doc_id)}</button>` : ""}</article>`;
+    return `<article class="assessment-atom ${esc(atom.band)}"><header><b>${esc(atom.question_id)}</b><span>${esc(titleCase(atom.band))}</span></header><p>${esc(atom.text)}</p><small>Best filtered passage overlap ${Number(atom.max_passage_score || 0).toFixed(3)}</small>${citation ? `<button class="source-link" data-source-doc="${esc(citation.doc_id)}" data-source-paragraph="${esc(citation.paragraph_id)}" data-highlight="${esc(salientTerms(atom.text).join("||"))}">Inspect strongest lead / ${esc(citation.doc_id)}</button>` : ""}</article>`;
   }).join("");
   let taskSpecific = "";
   if (payload.task === "hypothesis") {
@@ -1907,10 +1982,10 @@ function liveDispositionMarkup(payload) {
     taskSpecific = `<section class="assessment-specific"><h3>Potential directional claims</h3><p>${esc(assessment.direction_caveat || "Direction still requires citation review.")}</p><div class="directional-leads">${directional.map((row) => `<article class="${esc(row.extraction_stance)}"><span>${esc(titleCase(row.extraction_stance))} lead / ${esc(row.question_id)}</span><b>${esc(row.text)}</b><small>Extraction target: ${esc(row.target || "unspecified")} / match ${Number(row.best_atom_score || 0).toFixed(3)}</small><button class="source-link" data-source-doc="${esc(row.doc_id)}" data-source-paragraph="${esc(row.paragraph_id)}" data-highlight="${esc(salientTerms(row.text).join("||"))}">Open cited claim</button></article>`).join("") || `<p>No support- or oppose-labeled extracted claim cleared the usable-lead threshold.</p>`}</div></section>`;
   } else if (payload.task === "redaction") {
     const candidates = assessment.candidate_guesses || [];
-    taskSpecific = `<section class="assessment-specific"><h3>Corpus-derived candidate guesses</h3><p>${esc(assessment.candidate_rule || "Candidate phrases are ranked from structured extraction in the retained eligible passages.")} They are leads, not certified fills.</p><div class="candidate-guess-list">${candidates.map((row,index) => {
+    taskSpecific = `<section class="assessment-specific"><h3>Corpus-derived candidate guesses</h3><p>${esc(assessment.candidate_rule || "Candidate phrases are ranked from structured extraction in the retained policy-filtered passages.")} They are leads, not certified fills.</p><div class="candidate-guess-list">${candidates.map((row,index) => {
       const citation = row.citations?.[0] || {doc_id:row.doc_ids?.[0], paragraph_id:row.paragraph_id};
       return `<article><span>${index + 1}</span><div><b>${esc(row.candidate)}</b><small>${formatNumber(row.covered_atom_count)} of ${formatNumber(assessment.required_atom_count)} constraints with usable passage leads / aggregate ${Number(row.score || 0).toFixed(3)}</small></div>${citation?.doc_id ? `<button class="source-link" data-source-doc="${esc(citation.doc_id)}" data-source-paragraph="${esc(citation.paragraph_id || "")}" data-highlight="${esc(salientTerms(row.candidate).join("||"))}">Source</button>` : ""}</article>`;
-    }).join("") || `<p>No structured candidate was found in the retained eligible passages.</p>`}</div></section>`;
+    }).join("") || `<p>No structured candidate was found in the retained policy-filtered passages.</p>`}</div></section>`;
   }
   const headline = payload.task === "reconstruction"
     ? `${assessment.located_required_atom_count} of ${assessment.required_atom_count} required atoms have usable retrieval leads (${percent}%).`
@@ -1927,19 +2002,19 @@ function liveRankingMarkup(payload) {
     const atomScores = (row.atom_scores || []).map((atom) => `<i class="${Number(atom.score) >= .08 ? "hit" : ""}">${esc(atom.question_id)} ${Number(atom.score).toFixed(2)}</i>`).join("");
     const highlights = row.highlight_terms?.length ? row.highlight_terms : salientTerms(payload.query);
     return `<button class="ranking-row source-link" data-source-doc="${esc(row.doc_id)}" data-source-paragraph="${esc(row.paragraph_id || "")}" data-highlight="${esc(highlights.join("||"))}" title="${esc(mode === "graph" ? `Combined score ${Number(row.ranking_score || 0).toFixed(3)}; strongest graph-text overlap ${Number(row.graph_evidence_alignment || 0).toFixed(3)}` : `Document score ${Number(row.document_score || 0).toFixed(3)}`)}"><span>${index + 1}</span><div><b>${esc(row.doc_id)}</b><small>${esc(detail)}</small><span class="atom-score-strip">${atomScores}</span></div><em>${mode === "graph" ? `${lift} rank` : Number(row.document_score || 0).toFixed(2)}</em></button>`;
-  }).join("") || `<p>No eligible document produced a positive match.</p>`}</div>`;
+  }).join("") || `<p>No filtered document produced a positive match.</p>`}</div>`;
   const limits = payload.retrieval_limits || {};
   return `<div class="ranking-method-note"><b>What is ranked</b><p>These are candidate cables, not accepted evidence. Document-only score = 62% strongest atom overlap + 38% mean atom coverage. Graph-assisted score = 72% document score + 28% normalized graph contribution. Atom badges expose the cable's direct score for every retrieval target.</p></div><div class="ranking-compare">${table(payload.document_only,"document")}${table(payload.graph_assisted,"graph")}</div><p class="inspector-summary">Each panel shows at most ${formatNumber(limits.ranked_documents_per_method || payload.document_only.length)} ranked cables. The interleaved passage pool contains ${formatNumber(limits.unique_passage_candidate_documents || 0)} unique cables. A positive graph rank change means graph-linked semantic evidence promoted a cable; it does not certify proof.</p>`;
 }
 
 function liveGraphPathsMarkup(payload) {
-  if (!payload.graph_paths.length) return `<p>No eligible graph expansion path contributed to this query.</p>`;
+  if (!payload.graph_paths.length) return `<p>No policy-filtered graph expansion path contributed to this query.</p>`;
   const paths = payload.graph_paths.slice(0, state.pathDisplayLimit);
-  return `<div class="route-display-toolbar"><p class="route-limit-note">Showing ${formatNumber(paths.length)} of ${formatNumber(payload.graph_paths.length)} retained graph paths, balanced across atoms before score fill. This controls presentation only; retrieval has already used the full eligible graph index. Select <b>Guide path</b> to walk from atom through hierarchy placement, semantic seed, graph edge, and candidate cable.</p>${pathDisplayControl(payload.graph_paths.length)}</div><div class="live-paths">${paths.map((path,index) => { const highlights = path.highlight_terms?.length ? path.highlight_terms : salientTerms(path.question_text || payload.query); return `<article><button class="path-atom" data-live-atom-id="${esc(path.question_id)}"><span>${esc(path.question_id)} / retrieval target</span><b>${esc(path.question_text)}</b></button><div><span>${esc(path.seed_type)} seed</span><b>${esc(path.seed_label)}</b></div><i>-&gt;<small>${esc(titleCase(path.relation))}</small></i><div><span>${path.neighbor_label ? `Graph neighbor${path.evidence_alignment != null ? ` / edge-text overlap ${Number(path.evidence_alignment).toFixed(2)}` : ""}` : "Node provenance"}</span><b>${esc(path.neighbor_label || path.doc_id)}</b></div><div class="live-path-actions"><button data-live-route-index="${index}">Guide path</button><button class="source-link" data-source-doc="${esc(path.doc_id)}" data-source-paragraph="${esc(path.paragraph_id || "")}" data-highlight="${esc(highlights.join("||"))}">${esc(path.doc_id)}</button></div></article>`; }).join("")}</div>`;
+  return `<div class="route-display-toolbar"><p class="route-limit-note">Showing ${formatNumber(paths.length)} of ${formatNumber(payload.graph_paths.length)} retained graph paths, balanced across atoms before score fill. This controls presentation only; retrieval has already used the full policy-filtered graph index. Select <b>Guide path</b> to walk from atom through hierarchy placement, semantic seed, graph edge, and candidate cable.</p>${pathDisplayControl(payload.graph_paths.length)}</div><div class="live-paths">${paths.map((path,index) => { const highlights = path.highlight_terms?.length ? path.highlight_terms : salientTerms(path.question_text || payload.query); return `<article><button class="path-atom" data-live-atom-id="${esc(path.question_id)}"><span>${esc(path.question_id)} / retrieval target</span><b>${esc(path.question_text)}</b></button><div><span>${esc(path.seed_type)} seed</span><b>${esc(path.seed_label)}</b></div><i>-&gt;<small>${esc(titleCase(path.relation))}</small></i><div><span>${path.neighbor_label ? `Graph neighbor${path.evidence_alignment != null ? ` / edge-text overlap ${Number(path.evidence_alignment).toFixed(2)}` : ""}` : "Node provenance"}</span><b>${esc(path.neighbor_label || path.doc_id)}</b></div><div class="live-path-actions"><button data-live-route-index="${index}">Guide path</button><button class="source-link" data-source-doc="${esc(path.doc_id)}" data-source-paragraph="${esc(path.paragraph_id || "")}" data-highlight="${esc(highlights.join("||"))}">${esc(path.doc_id)}</button></div></article>`; }).join("")}</div>`;
 }
 
 function livePassagesMarkup(payload) {
-  if (!payload.passages.length) return `<p>No positive-scoring eligible passage was returned.</p>`;
+  if (!payload.passages.length) return `<p>No positive-scoring filtered passage was returned.</p>`;
   return `<div class="evidence-grid live-passages">${payload.passages.slice(0,12).map((row) => { const atom = payload.atoms.find((item) => item.id === row.best_question_id); const highlights = row.highlight_terms?.length ? row.highlight_terms : salientTerms(atom?.text || payload.query); return `<article class="workbench-evidence context"><span class="set-label">${esc(row.best_question_id)} / ${esc(row.retrieval_channels.join(" + "))}</span><h3>${esc(row.doc_id)}</h3><div class="doc-meta">${esc([row.date,row.classification,row.paragraph_id].filter(Boolean).join(" / "))}</div><blockquote>${highlighted(row.text,highlights)}</blockquote><button class="source-link" data-source-doc="${esc(row.doc_id)}" data-source-paragraph="${esc(row.paragraph_id)}" data-highlight="${esc(highlights.join("||"))}">Open exact cable segment</button></article>`; }).join("")}</div>`;
 }
 
@@ -2052,7 +2127,7 @@ function liveRouteGuide(payload, path) {
     }
     steps.push({kind:"node", id:path.neighbor_id, narrativeId:neighborHierarchy.narrativeId, communityId:neighborHierarchy.communityId, label:path.neighbor_label, detail:`Traversed via ${titleCase(path.relation)}; contribution ${Number(path.contribution || 0).toFixed(3)}.`, edgeType:path.relation, edgeDocId:path.doc_id, edgeParagraphId:path.paragraph_id, edgeExcerpt:path.source_excerpt || "", edgeHighlights:path.highlight_terms || [], transition:bridge});
   }
-  steps.push({kind:"document", id:path.doc_id, paragraphId:path.paragraph_id, label:path.doc_id, detail:`Eligible candidate cable reached through ${path.match_basis || "retrieval provenance"}. Discovery is not proof.`});
+  steps.push({kind:"document", id:path.doc_id, paragraphId:path.paragraph_id, label:path.doc_id, detail:`Filtered candidate cable reached through ${path.match_basis || "retrieval provenance"}. Discovery is not proof.`});
   return {
     title: `${path.question_id} graph route`,
     subtitle: path.question_text,
@@ -2536,7 +2611,7 @@ function candidateScreeningMarkup(item) {
   const retrieval = screen.atom_retrieval_screen;
   const graph = screen.graph_retrieval_screen;
   const bandLabel = {high_overlap:"High retrieval overlap",moderate_overlap:"Moderate retrieval overlap",weak_overlap:"Weak retrieval overlap"};
-  return `<div class="candidate-screen-summary"><article><b>${formatNumber(screen.eligible_document_count)}</b><span>eligible earlier cables</span></article><article><b>${duplicate.status === "no_near_duplicate_observed" ? "None observed" : "Review required"}</b><span>full-target near duplicates</span></article><article><b>${esc(titleCase(retrieval.profile))}</b><span>atom retrieval profile</span></article><article><b>${Number(graph.maximum_observed_rank_lift || 0) > 0 ? "+" : ""}${formatNumber(graph.maximum_observed_rank_lift || 0)}</b><span>largest graph rank change</span></article></div>
+  return `<div class="candidate-screen-summary"><article><b>${formatNumber(screen.eligible_document_count)}</b><span>filtered earlier cables</span></article><article><b>${duplicate.status === "no_near_duplicate_observed" ? "None observed" : "Review required"}</b><span>full-target near duplicates</span></article><article><b>${esc(titleCase(retrieval.profile))}</b><span>atom retrieval profile</span></article><article><b>${Number(graph.maximum_observed_rank_lift || 0) > 0 ? "+" : ""}${formatNumber(graph.maximum_observed_rank_lift || 0)}</b><span>largest graph rank change</span></article></div>
     <div class="candidate-screen-atoms">${retrieval.atoms.map((atom) => {
       const top = atom.top_matches?.[0];
       return `<article><span class="atom-id">${esc(atom.atom_id)}</span><div><b>${esc(atom.text)}</b><small>${esc(bandLabel[atom.retrieval_band] || titleCase(atom.retrieval_band))} / cosine ${Number(atom.top_score || 0).toFixed(3)}</small>${top ? `<button class="source-link" data-source-doc="${esc(top.doc_id)}" data-source-paragraph="${esc(top.paragraph_id)}" data-highlight="${esc(salientTerms(atom.text).join("||"))}">Inspect top retrieval: ${esc(top.doc_id)} / ${esc(top.paragraph_id)}</button>` : ""}</div></article>`;
@@ -2550,7 +2625,7 @@ function candidateMarkup(item) {
     ${workflowStep("01", "Proposed analyst target", "Exact SECRET-source provenance", `<div class="query-block">${esc(item.query)}</div><div class="source-origin"><span><b>${esc(item.source.doc_id)} / ${esc(sourceSegments)}</b><small>${esc(item.source.date)} / ${esc(item.source.classification)} / ${esc(item.source.subject)}</small></span><button class="source-link" data-source-doc="${esc(item.source.doc_id)}" data-source-paragraph="${esc(item.source.paragraph_id)}" data-highlight="${esc(sourceTerms.join("||"))}">Open source cable and highlight target terms</button></div><div class="source-excerpt">${highlighted(item.source.context, sourceTerms)}</div>`)}
     ${workflowStep("02", "Proposed atomic questions", "Rehearsal design / not adjudicated", `<div class="atom-table">${item.atoms.map((atom) => `<div class="atom-row candidate-atom"><span class="atom-id">${esc(atom.id)}</span><span class="atom-text"><b>${esc(atom.text)}</b><small>Candidate retrieval target</small></span><span class="atom-status not_assessed">Not assessed</span></div>`).join("")}</div>`)}
     ${workflowStep("03", "Pre-benchmark retrieval screen", "Deterministic / descriptive only", candidateScreeningMarkup(item))}
-    ${workflowStep("04", "Required validation", "Before promotion to the recorded casebook", `<div class="candidate-gates"><article><b>1 / Leakage screen</b><p>Review the strongest eligible matches and confirm that no passage restates the complete target.</p></article><article><b>2 / Retrieval comparison</b><p>Run document-only and graph-assisted conditions under the same strict date and metadata policy.</p></article><article><b>3 / Citation adjudication</b><p>Inspect exact source passages atom by atom; retrieval relevance alone cannot certify coverage.</p></article><article><b>4 / Outcome lock</b><p>Only an executed, archived run may receive FULL, PARTIAL, opposition, resolved, or insufficient labels.</p></article></div>`)}
+    ${workflowStep("04", "Required validation", "Before promotion to the recorded casebook", `<div class="candidate-gates"><article><b>1 / Leakage screen</b><p>Review the strongest policy-filtered matches and confirm that no passage restates the complete target.</p></article><article><b>2 / Retrieval comparison</b><p>Run document-only and graph-assisted conditions under the same strict date and metadata policy.</p></article><article><b>3 / Citation adjudication</b><p>Inspect exact source passages atom by atom; retrieval relevance alone cannot certify coverage.</p></article><article><b>4 / Outcome lock</b><p>Only an executed, archived run may receive FULL, PARTIAL, opposition, resolved, or insufficient labels.</p></article></div>`)}
     ${workflowStep("05", "Rehearse as a live task", "Local exploratory retrieval", `<div class="candidate-launch"><p>This keeps the selected ${esc(liveTaskMeta[item.task]?.label.toLowerCase() || item.task)} contract and reviewed atoms while withholding the source cable from evidence. The result remains a retrieval rehearsal, not a benchmark verdict.</p><button id="candidate-live" class="primary-action">Load into live task</button>${item.answer ? `<details><summary>Show held-out redaction answer for curator review</summary><b>${esc(item.answer)}</b></details>` : ""}</div>`)}</div>`;
 }
 
@@ -2573,11 +2648,11 @@ function bindCandidateWorkspace(item) {
 function caseMarkup(item) {
   const result = item.result;
   const audited = String(result.authority || "").startsWith("audited_");
-  return `<header class="case-hero"><p class="eyebrow">${esc(titleCase(item.task))} / ${esc(item.source.doc_id)}</p><h1>${esc(item.title)}</h1><p>${esc(item.stage_note)}</p><div class="case-status-row"><span class="status-pill outcome">${esc(result.display_outcome)}</span><span class="status-pill">${formatNumber(item.eligibility.eligible_document_count)} eligible earlier cables</span><span class="status-pill">${esc(audited ? "citation assessment retained separately" : "native deterministic outcome")}</span></div></header>
+  return `<header class="case-hero"><p class="eyebrow">${esc(titleCase(item.task))} / ${esc(item.source.doc_id)}</p><h1>${esc(item.title)}</h1><p>${esc(item.stage_note)}</p><div class="case-status-row"><span class="status-pill outcome">${esc(result.display_outcome)}</span><span class="status-pill">${formatNumber(item.eligibility.eligible_document_count)} filtered earlier cables</span><span class="status-pill">${esc(audited ? "citation assessment retained separately" : "native deterministic outcome")}</span></div></header>
     <div class="workspace-body">
       ${workflowStep("01", "Analyst target and provenance", "Input", queryMarkup(item))}
       ${workflowStep("02", "Atomic evidence questions", recordedAtomMethod(item), atomMarkup(item))}
-      ${workflowStep("03", "Eligible evidence universe", "Deterministic policy", eligibilityMarkup(item))}
+      ${workflowStep("03", "Filtered evidence universe", "Deterministic policy", eligibilityMarkup(item))}
       ${workflowStep("04", "Graph retrieval paths", "Deterministic traversal", routesMarkup(item))}
       ${workflowStep("05", "Retrieved source passages", "Citations and context", workbenchEvidenceMarkup(item))}
       ${workflowStep("06", "Coverage and outcome", "Rule-based aggregation", resultMarkup(item))}
@@ -2614,7 +2689,7 @@ function atomMarkup(item) {
 }
 
 function eligibilityMarkup(item) {
-  return `<div class="eligibility-summary"><b>${formatNumber(item.eligibility.eligible_document_count)} cables remained</b><span>Only documents strictly before ${esc(item.source.date)} with eligible original classification and no NOFORN marking entered retrieval. The held-out source was independently guarded by document ID.</span></div>`;
+  return `<div class="eligibility-summary"><b>${formatNumber(item.eligibility.eligible_document_count)} cables remained</b><span>Only documents strictly before ${esc(item.source.date)} with a permitted original classification and no NOFORN marking entered retrieval. The held-out source was independently guarded by document ID.</span></div>`;
 }
 
 function routesMarkup(item) {
