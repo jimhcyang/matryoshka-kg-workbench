@@ -20,6 +20,13 @@ const GUIDE_REPLAY_PHASE_MS = 450;
 const REQUIRED_API_PROTOCOL = "matryoshka_iran_demo_api_v2";
 const RESTART_COMMAND = ".venv/bin/python src/demo/iran_site_visit/serve.py --open";
 const STATIC_MANIFEST_PATH = "data/static_manifest.json";
+const VISITOR_REGISTRATION = Object.freeze({
+  enabled: false,
+  endpoint: "",
+  registrationVersion: "2026-10-12",
+  storageKey: "matryoshka_visitor_registration_v1",
+  ...(window.MATRYOSHKA_VISITOR_REGISTRATION || {}),
+});
 const RECORDED_DEMO_CASES = {
   reconstruction: [
     "iran_reconstruction_regency_illegality_03",
@@ -287,6 +294,7 @@ async function init() {
     renderHomeStats();
     bindEvents();
     renderCaseFilters();
+    initializeVisitorRegistration();
     const firstCase = state.bundle.workbench.cases.find((item) => item.task === state.taskFilter);
     state.caseId = firstCase?.id || state.bundle.workbench.cases[0]?.id;
     if (state.staticMode) $("#corpus-chip").insertAdjacentHTML("beforeend", "<span class=\"hosted-badge\">Hosted replay</span>");
@@ -298,6 +306,116 @@ async function init() {
   } catch (error) {
     $("#boot").innerHTML = `<div class="boot-error"><b>Demo could not start.</b><p>${esc(error.message)}</p>${restartHintMarkup()}</div>`;
   }
+}
+
+function validRegistrationEndpoint(value) {
+  try {
+    const url = new URL(String(value || ""));
+    return url.protocol === "https:" && url.hostname === "script.google.com" && /^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(url.pathname);
+  } catch (_error) {
+    return false;
+  }
+}
+
+function submitVisitorRegistration(payload) {
+  const requestId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  return fetch(VISITOR_REGISTRATION.endpoint, {
+    method: "POST",
+    mode: "no-cors",
+    cache: "no-store",
+    credentials: "omit",
+    keepalive: true,
+    body: JSON.stringify({...payload, request_id: requestId}),
+  });
+}
+
+function registrationMarker() {
+  try {
+    return JSON.parse(localStorage.getItem(VISITOR_REGISTRATION.storageKey) || "null");
+  } catch (_error) {
+    return null;
+  }
+}
+
+function markVisitorRegistered() {
+  try {
+    localStorage.setItem(VISITOR_REGISTRATION.storageKey, JSON.stringify({
+      version: VISITOR_REGISTRATION.registrationVersion,
+      recordedAt: new Date().toISOString(),
+    }));
+  } catch (_error) {
+    // Registration still succeeds when browser storage is unavailable.
+  }
+}
+
+function releaseVisitorGate({recorded = true} = {}) {
+  const gate = $("#visitor-registration");
+  if (!gate) return;
+  if (recorded) markVisitorRegistered();
+  gate.classList.add("leaving");
+  document.body.classList.remove("registration-required");
+  setTimeout(() => { gate.hidden = true; gate.classList.remove("leaving"); }, 330);
+}
+
+function initializeVisitorRegistration() {
+  const gate = $("#visitor-registration");
+  const form = $("#visitor-registration-form");
+  if (!gate || !form || !VISITOR_REGISTRATION.enabled) return;
+  if (!validRegistrationEndpoint(VISITOR_REGISTRATION.endpoint)) {
+    console.warn("Visitor registration is enabled without a valid Google Apps Script /exec endpoint; the gate was not shown.");
+    return;
+  }
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("registration") === "reset") {
+    try { localStorage.removeItem(VISITOR_REGISTRATION.storageKey); } catch (_error) { /* no-op */ }
+  }
+  const marker = registrationMarker();
+  if (marker?.version === VISITOR_REGISTRATION.registrationVersion) return;
+
+  document.body.classList.add("registration-required");
+  gate.hidden = false;
+  setTimeout(() => $("#visitor-email")?.focus(), 50);
+
+  $("#visitor-continue")?.addEventListener("click", () => releaseVisitorGate({recorded:false}), {once:true});
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const emailInput = $("#visitor-email");
+    const submit = $("#visitor-submit");
+    const status = $("#visitor-registration-status");
+    const fallback = $("#visitor-continue");
+    const email = String(emailInput?.value || "").trim().toLowerCase();
+    if (!emailInput?.checkValidity() || email.length > 254) {
+      emailInput?.reportValidity();
+      return;
+    }
+
+    submit.disabled = true;
+    emailInput.disabled = true;
+    status.textContent = "Recording your visit...";
+    fallback.hidden = true;
+    const payload = {
+      event_type: "visitor_registration",
+      email,
+      website: String($("#visitor-website")?.value || ""),
+      page_url: window.location.href,
+      referrer: document.referrer,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+      language: navigator.language || "",
+      visitor_id: globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      registration_version: VISITOR_REGISTRATION.registrationVersion,
+    };
+
+    try {
+      await submitVisitorRegistration(payload);
+      status.textContent = "Registration submitted. Opening Matryoshka...";
+      setTimeout(() => releaseVisitorGate(), 260);
+    } catch (_error) {
+      submit.disabled = false;
+      emailInput.disabled = false;
+      status.textContent = "The visitor log could not be reached. You may retry or continue to the demonstration.";
+      fallback.hidden = false;
+    }
+  });
 }
 
 function openInitialRoute() {

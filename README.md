@@ -36,6 +36,18 @@ community expansion require the full local research workspace; the hosted UI
 labels those limits rather than simulating execution. See
 [`docs/IRAN_SITE_VISIT_DEMO.md`](docs/IRAN_SITE_VISIT_DEMO.md).
 
+### Optional Visitor Registration
+
+The landing page contains an optional blurred email-registration gate. It is
+disabled until `site/visitor-config.js` contains a deployed Google Apps Script
+`/exec` URL and `enabled: true`. The spreadsheet-bound endpoint and deployment
+instructions are in
+[`integrations/visitor_registration/`](integrations/visitor_registration/).
+
+This records consented visits in a private Sheet; it is not authentication and
+does not make the public GitHub Pages site private. No Sheet credential, Sheet
+ID, API key, or GitHub write token is shipped to the browser.
+
 ## Requirements
 
 - Python 3.11 is recommended.

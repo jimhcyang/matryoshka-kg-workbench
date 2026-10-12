@@ -8,6 +8,26 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <section id="visitor-registration" class="visitor-registration" role="dialog" aria-modal="true" aria-labelledby="visitor-registration-title" hidden>
+    <div class="visitor-registration-card">
+      <div class="registration-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="eyebrow">Matryoshka research demonstration</p>
+      <h1 id="visitor-registration-title">Enter your email to continue.</h1>
+      <p class="registration-intro">This lets the research team maintain a private record of who visited the demonstration.</p>
+      <form id="visitor-registration-form" novalidate>
+        <label for="visitor-email">Email address</label>
+        <div class="registration-input-row">
+          <input id="visitor-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="name@example.com" required>
+          <button id="visitor-submit" type="submit">Continue <span aria-hidden="true">-&gt;</span></button>
+        </div>
+        <label class="registration-honeypot" aria-hidden="true">Website<input id="visitor-website" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <p id="visitor-registration-status" class="registration-status" role="status" aria-live="polite"></p>
+        <button id="visitor-continue" class="registration-continue" type="button" hidden>Continue without recording</button>
+      </form>
+      <p class="registration-privacy">By continuing, you consent to storing your email, visit time, page URL, referrer, browser language, and timezone in a private research log. No password is requested. This is visitor registration, not access authentication.</p>
+    </div>
+  </section>
+
   <div id="boot" class="boot-screen">
     <div class="boot-mark"><span></span><span></span><span></span></div>
     <p>Preparing the Iran corpus map</p>
@@ -158,6 +178,7 @@
   </aside>
   <div id="drawer-scrim" class="drawer-scrim" hidden></div>
 
+  <script src="visitor-config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
