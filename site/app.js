@@ -23,10 +23,17 @@ const STATIC_MANIFEST_PATH = "data/static_manifest.json";
 const VISITOR_REGISTRATION = Object.freeze({
   enabled: false,
   endpoint: "",
-  registrationVersion: "2026-10-12",
-  storageKey: "matryoshka_visitor_registration_v1",
+  registrationVersion: "2026-10-12-events-v2",
+  sessionStorageKey: "matryoshka_visitor_session_v2",
+  visitorStorageKey: "matryoshka_visitor_id_v1",
   ...(window.MATRYOSHKA_VISITOR_REGISTRATION || {}),
 });
+const visitorTelemetry = {
+  email: "",
+  visitorId: "",
+  sessionId: "",
+  recentEvents: new Map(),
+};
 const RECORDED_DEMO_CASES = {
   reconstruction: [
     "iran_reconstruction_regency_illegality_03",
@@ -317,8 +324,54 @@ function validRegistrationEndpoint(value) {
   }
 }
 
-function submitVisitorRegistration(payload) {
-  const requestId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+function visitorIdentifier(prefix) {
+  const random = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  return `${prefix}_${random}`;
+}
+
+function persistentVisitorId() {
+  try {
+    const existing = localStorage.getItem(VISITOR_REGISTRATION.visitorStorageKey);
+    if (existing) return existing;
+    const created = visitorIdentifier("visitor");
+    localStorage.setItem(VISITOR_REGISTRATION.visitorStorageKey, created);
+    return created;
+  } catch (_error) {
+    return visitorIdentifier("visitor");
+  }
+}
+
+function storedVisitorSession() {
+  try {
+    return JSON.parse(sessionStorage.getItem(VISITOR_REGISTRATION.sessionStorageKey) || "null");
+  } catch (_error) {
+    return null;
+  }
+}
+
+function storeVisitorSession(profile) {
+  try {
+    sessionStorage.setItem(VISITOR_REGISTRATION.sessionStorageKey, JSON.stringify(profile));
+  } catch (_error) {
+    // The in-memory session remains usable when browser storage is unavailable.
+  }
+}
+
+function activateVisitorSession(profile) {
+  visitorTelemetry.email = String(profile.email || "").trim().toLowerCase();
+  visitorTelemetry.visitorId = String(profile.visitorId || persistentVisitorId());
+  visitorTelemetry.sessionId = String(profile.sessionId || visitorIdentifier("session"));
+}
+
+function activityRoute() {
+  if (!$("#home")?.hidden) return "home";
+  if (state.mode === "explorer") return `explorer:${state.level}`;
+  const task = state.workbenchMode === "live" ? state.liveTask : state.taskFilter;
+  return `workbench:${state.workbenchMode}:${task}`;
+}
+
+function submitVisitorEvent(payload) {
+  const requestId = visitorIdentifier("event");
   return fetch(VISITOR_REGISTRATION.endpoint, {
     method: "POST",
     mode: "no-cors",
@@ -329,29 +382,44 @@ function submitVisitorRegistration(payload) {
   });
 }
 
-function registrationMarker() {
-  try {
-    return JSON.parse(localStorage.getItem(VISITOR_REGISTRATION.storageKey) || "null");
-  } catch (_error) {
-    return null;
-  }
+function visitorEventPayload(eventType, action, targetType = "", targetId = "", detail = {}) {
+  return {
+    event_type: eventType,
+    action,
+    target_type: String(targetType || ""),
+    target_id: compact(targetId, 240),
+    detail: compact(JSON.stringify(detail || {}), 1200),
+    email: visitorTelemetry.email,
+    website: "",
+    page_url: window.location.href,
+    route: activityRoute(),
+    referrer: document.referrer,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+    language: navigator.language || "",
+    visitor_id: visitorTelemetry.visitorId,
+    session_id: visitorTelemetry.sessionId,
+    registration_version: VISITOR_REGISTRATION.registrationVersion,
+  };
 }
 
-function markVisitorRegistered() {
-  try {
-    localStorage.setItem(VISITOR_REGISTRATION.storageKey, JSON.stringify({
-      version: VISITOR_REGISTRATION.registrationVersion,
-      recordedAt: new Date().toISOString(),
-    }));
-  } catch (_error) {
-    // Registration still succeeds when browser storage is unavailable.
-  }
+function trackVisitorEvent(eventType, action, targetType = "", targetId = "", detail = {}, dedupeMs = 800) {
+  if (!VISITOR_REGISTRATION.enabled || !visitorTelemetry.email || !validRegistrationEndpoint(VISITOR_REGISTRATION.endpoint)) return;
+  const key = `${eventType}:${action}:${targetType}:${targetId}`;
+  const now = Date.now();
+  if (dedupeMs && now - Number(visitorTelemetry.recentEvents.get(key) || 0) < dedupeMs) return;
+  visitorTelemetry.recentEvents.set(key, now);
+  submitVisitorEvent(visitorEventPayload(eventType, action, targetType, targetId, detail)).catch(() => {
+    // Analytics must never interrupt the demonstration.
+  });
 }
 
-function releaseVisitorGate({recorded = true} = {}) {
+function trackInteraction(action, targetType = "", targetId = "", detail = {}, dedupeMs = 800) {
+  trackVisitorEvent("interaction", action, targetType, targetId, detail, dedupeMs);
+}
+
+function releaseVisitorGate() {
   const gate = $("#visitor-registration");
   if (!gate) return;
-  if (recorded) markVisitorRegistered();
   gate.classList.add("leaving");
   document.body.classList.remove("registration-required");
   setTimeout(() => { gate.hidden = true; gate.classList.remove("leaving"); }, 330);
@@ -367,16 +435,21 @@ function initializeVisitorRegistration() {
   }
   const params = new URLSearchParams(window.location.search);
   if (params.get("registration") === "reset") {
-    try { localStorage.removeItem(VISITOR_REGISTRATION.storageKey); } catch (_error) { /* no-op */ }
+    try { sessionStorage.removeItem(VISITOR_REGISTRATION.sessionStorageKey); } catch (_error) { /* no-op */ }
   }
-  const marker = registrationMarker();
-  if (marker?.version === VISITOR_REGISTRATION.registrationVersion) return;
+  try { localStorage.removeItem("matryoshka_visitor_registration_v1"); } catch (_error) { /* remove the retired persistent gate marker */ }
+  const stored = storedVisitorSession();
+  if (stored?.version === VISITOR_REGISTRATION.registrationVersion && stored.email) {
+    activateVisitorSession(stored);
+    setTimeout(() => trackVisitorEvent("page_view", "load", "page", activityRoute(), {}, 0), 700);
+    return;
+  }
 
   document.body.classList.add("registration-required");
   gate.hidden = false;
   setTimeout(() => $("#visitor-email")?.focus(), 50);
 
-  $("#visitor-continue")?.addEventListener("click", () => releaseVisitorGate({recorded:false}), {once:true});
+  $("#visitor-continue")?.addEventListener("click", () => releaseVisitorGate(), {once:true});
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const emailInput = $("#visitor-email");
@@ -394,19 +467,35 @@ function initializeVisitorRegistration() {
     status.textContent = "Recording your visit...";
     fallback.hidden = true;
     const payload = {
-      event_type: "visitor_registration",
+      event_type: "session_start",
+      action: "email_submitted",
+      target_type: "page",
+      target_id: activityRoute(),
+      detail: "{}",
       email,
       website: String($("#visitor-website")?.value || ""),
       page_url: window.location.href,
+      route: activityRoute(),
       referrer: document.referrer,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
       language: navigator.language || "",
-      visitor_id: globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      visitor_id: persistentVisitorId(),
+      session_id: visitorIdentifier("session"),
       registration_version: VISITOR_REGISTRATION.registrationVersion,
     };
 
     try {
-      await submitVisitorRegistration(payload);
+      await submitVisitorEvent(payload);
+      const profile = {
+        email,
+        visitorId: payload.visitor_id,
+        sessionId: payload.session_id,
+        version: VISITOR_REGISTRATION.registrationVersion,
+        startedAt: new Date().toISOString(),
+      };
+      activateVisitorSession(profile);
+      storeVisitorSession(profile);
+      setTimeout(() => trackVisitorEvent("page_view", "load", "page", activityRoute(), {}, 0), 500);
       status.textContent = "Registration submitted. Opening Matryoshka...";
       setTimeout(() => releaseVisitorGate(), 260);
     } catch (_error) {
@@ -499,10 +588,71 @@ function bindEvents() {
   });
   bindSearch();
   bindCanvas();
+  bindActivityTracking();
   new ResizeObserver(() => {
     resizeCanvas();
     constrainGraphGuidePanel($("#graph-guide"));
   }).observe($("#graph-stage"));
+}
+
+function bindActivityTracking() {
+  const dataRules = [
+    ["launch", "launch_mode", "mode"],
+    ["mode", "switch_mode", "mode"],
+    ["workbenchMode", "switch_workbench_mode", "mode"],
+    ["task", "select_recorded_task", "task"],
+    ["liveTask", "select_live_task", "task"],
+    ["case", "select_recorded_case", "case"],
+    ["liveExample", "select_live_profile", "profile"],
+    ["routePath", "open_recorded_route", "route"],
+    ["liveRouteIndex", "open_live_route", "route"],
+    ["recordedGuidePath", "guide_recorded_route", "route"],
+    ["atomIndex", "open_recorded_atom", "atom"],
+    ["liveAtomIndex", "open_live_atom", "atom"],
+    ["liveAtomId", "open_live_atom", "atom"],
+    ["selectNode", "select_related_node", "graph_node"],
+    ["selectEdge", "select_related_edge", "graph_edge"],
+    ["openRecorded", "open_audited_companion", "case"],
+    ["graphGuideStep", "select_guide_step", "guide_step"],
+    ["guidedStep", "select_route_step", "guide_step"],
+  ];
+  const idRules = {
+    "home-button": ["return_home", "page", "home"],
+    "graph-back": ["graph_back", "graph_level", "parent"],
+    "graph-fit": ["graph_fit", "graph_level", "current"],
+    "graph-load-complete": ["toggle_complete_community", "community", "current"],
+    "neighbors-more": ["expand_neighbors", "graph_node", "selected"],
+    "neighbors-less": ["collapse_neighbors", "graph_node", "selected"],
+    "recorded-guide-map": ["open_recorded_route_guide", "route", "selected"],
+    "guided-map": ["open_route_guide", "route", "selected"],
+    "graph-guide-prev": ["guide_previous", "guide_step", "previous"],
+    "graph-guide-next": ["guide_next", "guide_step", "next"],
+    "graph-guide-replay": ["guide_replay", "route", "active"],
+    "graph-guide-workbench": ["guide_return_workbench", "mode", "workbench"],
+    "candidate-live": ["load_candidate_live", "case", "selected"],
+  };
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("#visitor-registration")) return;
+    const control = event.target.closest("button, a");
+    if (!control || control.dataset.sourceDoc) return;
+    for (const [datasetKey, action, targetType] of dataRules) {
+      if (control.dataset[datasetKey] != null) {
+        trackInteraction(action, targetType, control.dataset[datasetKey]);
+        return;
+      }
+    }
+    const rule = idRules[control.id];
+    if (rule) trackInteraction(rule[0], rule[1], rule[2]);
+  });
+  document.addEventListener("change", (event) => {
+    if (event.target.closest("#visitor-registration")) return;
+    const control = event.target;
+    if (control.id === "labels-toggle" || control.id === "connected-toggle") {
+      trackInteraction("graph_display_toggle", "control", control.id, {checked:Boolean(control.checked)});
+    } else if (control.dataset.pathDisplayLimit != null || control.id === "live-limit") {
+      trackInteraction("change_path_limit", "control", control.id || "path_display_limit", {value:String(control.value)});
+    }
+  });
 }
 
 function launch(mode) {
@@ -586,9 +736,11 @@ async function runSearch(query) {
     const effectiveScopes = payload.effective_scopes || state.searchScopes;
     const results = payload.results.filter((item) => searchResultMatchesScopes(item, effectiveScopes));
     if (!results.length) {
+      trackInteraction("search", "search_scope", effectiveScopes.join("+"), {query_length:query.length, result_count:0, prefix_applied:Boolean(payload.prefix_applied)}, 2000);
       panel.innerHTML = `<div class="search-result"><span class="search-kind">No match</span><div><strong>Try another spelling or broaden the result type.</strong><small>Prefix examples: PERSON: Shah / DOCUMENT: 1979TEHRAN01121.</small></div></div>`;
       return;
     }
+    trackInteraction("search", "search_scope", effectiveScopes.join("+"), {query_length:query.length, result_count:results.length, prefix_applied:Boolean(payload.prefix_applied)}, 2000);
     panel.innerHTML = `<div class="search-contract"><b>${payload.prefix_applied ? "Typed prefix applied" : "Strict type filter"}</b><span>${payload.prefix_applied ? `${effectiveScopes.map(titleCase).join(" + ")} only / query: ${payload.query}` : `${effectiveScopes.includes("all") ? "All result types" : `${effectiveScopes.map(titleCase).join(" + ")} only`} / exact alias or ID -> exact label -> semantic node match -> hierarchy/document keyword`}</span></div>` + results.map((item, index) => `
       <button class="search-result" data-index="${index}">
         <span class="search-kind">${esc(item.entity_type || item.node_type || item.kind)}</span>
@@ -597,6 +749,7 @@ async function runSearch(query) {
       </button>`).join("");
     $$(".search-result[data-index]", panel).forEach((button) => button.addEventListener("click", () => focusSearchResult(results[Number(button.dataset.index)])));
   } catch (error) {
+    trackInteraction("search_error", "search_scope", state.searchScopes.join("+"), {query_length:query.length, error_type:error?.name || "Error"}, 2000);
     panel.innerHTML = `<div class="search-result"><span class="search-kind">Offline</span><div><strong>${esc(error.message)}</strong></div></div>`;
   }
 }
@@ -624,6 +777,10 @@ function closeSearch() { $("#search-results").classList.remove("open"); }
 function focusSearchResult(result) {
   closeSearch();
   $("#global-search").value = result.label;
+  trackInteraction("select_search_result", result.kind || "search_result", result.id || result.doc_id || "unidentified_result", {
+    result_type:result.entity_type || result.node_type || result.kind,
+    scopes:state.searchScopes,
+  });
   if (result.kind === "document") {
     openSource(result.doc_id || result.id, "", result.label);
     return;
@@ -1289,11 +1446,18 @@ function handleGraphClick(hit) {
   if (!hit) { state.selected = null; renderInspector(); drawGraph(); return; }
   state.selected = hit; state.edgePage = 0;
   state.neighborLimit = NEIGHBOR_STEP;
+  trackInteraction(
+    hit.kind === "edge" ? "select_graph_edge" : "select_graph_node",
+    hit.kind === "edge" ? "graph_edge" : nodeTypeLabel(hit.data),
+    hit.data.id,
+    hit.kind === "edge" ? {source:hit.data.source, target:hit.data.target, level:state.level} : {level:state.level},
+  );
   renderInspector(); drawGraph();
 }
 
 function drillNode(node) {
   if (!node) return;
+  trackInteraction("drill_graph_node", node.kind || node.type || "graph_node", node.id, {from_level:state.level});
   if (state.level === "narratives" || node.kind === "narrative") {
     state.narrativeId = node.id;
     state.communityId = null;
@@ -1547,6 +1711,7 @@ function bindSourceButtons(root = document) {
 }
 
 async function openSource(docId, paragraphId = "", highlight = "") {
+  trackInteraction("open_source", "document", docId, {paragraph_id:paragraphId || ""});
   const drawer = $("#source-drawer");
   drawer.classList.remove("guide-destination-document");
   $("#drawer-kicker").textContent = "Source cable";
@@ -1977,8 +2142,11 @@ function selectLiveProfile(profile) {
 
 function renderLiveExamples() {
   const profiles = liveProfiles();
-  $("#case-list").innerHTML = `<p class="live-example-heading">Prepared ${esc(liveTaskMeta[state.liveTask].label)} targets / ${profiles.length}</p>${profiles.map((item,index) => `<button class="case-button live-example ${item.profileId === state.liveDraft?.profileId ? "active" : ""}" data-live-example="${index}" data-role="${item.profileKind === "recorded" ? "diagnostic" : "candidate"}"><strong>${esc(item.title)}</strong><small>${item.profileKind === "recorded" ? "audited source case / fresh retrieval" : "source-verified rehearsal"} / before ${esc(item.date)}</small></button>`).join("")}`;
-  $$('[data-live-example]', $("#case-list")).forEach((button) => button.addEventListener("click", () => selectLiveProfile(profiles[Number(button.dataset.liveExample)])));
+  $("#case-list").innerHTML = `<p class="live-example-heading">Prepared ${esc(liveTaskMeta[state.liveTask].label)} targets / ${profiles.length}</p>${profiles.map((item) => `<button class="case-button live-example ${item.profileId === state.liveDraft?.profileId ? "active" : ""}" data-live-example="${esc(item.profileId)}" data-role="${item.profileKind === "recorded" ? "diagnostic" : "candidate"}"><strong>${esc(item.title)}</strong><small>${item.profileKind === "recorded" ? "audited source case / fresh retrieval" : "source-verified rehearsal"} / before ${esc(item.date)}</small></button>`).join("")}`;
+  $$('[data-live-example]', $("#case-list")).forEach((button) => button.addEventListener("click", () => {
+    const profile = profiles.find((item) => item.profileId === button.dataset.liveExample);
+    if (profile) selectLiveProfile(profile);
+  }));
 }
 
 function preparedAtomsMarkup(draft) {
@@ -2028,6 +2196,14 @@ async function runLiveQuery() {
   const sourceDocId = prepared ? state.liveDraft.sourceDocId || "" : "";
   const profileId = prepared ? state.liveDraft.profileId || "" : "";
   state.liveTask = task;
+  trackInteraction("run_live_query", "task", task, {
+    prepared,
+    profile_id:profileId,
+    cutoff:cutoff || "",
+    query_length:query.length,
+    supplied_atom_count:suppliedAtoms.length,
+    ranked_document_limit:Number($("#live-limit").value),
+  }, 0);
   button.disabled = true; button.textContent = "Retrieving...";
   $("#live-results").innerHTML = `<section class="live-loading"><i></i><b>Filtering cables, ranking each atom, and traversing graph neighbors</b></section>`;
   try {
@@ -2053,7 +2229,17 @@ async function runLiveQuery() {
     state.liveDraft = prepared ? state.liveDraft : {query, date: cutoff, task, atoms: [], sourceDocId: "", profileId: ""};
     $("#live-results").innerHTML = liveResultsMarkup(payload);
     bindLiveResults($("#live-results"), payload);
+    trackInteraction("live_query_complete", "task", task, {
+      prepared,
+      profile_id:profileId,
+      atom_count:(payload.atoms || []).length,
+      document_candidate_count:(payload.document_only || []).length,
+      graph_candidate_count:(payload.graph_assisted || []).length,
+      passage_count:(payload.passages || []).length,
+      coverage_status:payload.provisional_assessment?.coverage_status || "",
+    }, 0);
   } catch (error) {
+    trackInteraction("live_query_error", "task", task, {prepared, profile_id:profileId, error_type:error?.name || "Error"}, 0);
     $("#live-results").innerHTML = apiFailureMarkup(error, "Retrieval did not complete.");
   } finally {
     button.disabled = false; button.textContent = `Run ${liveTaskMeta[task].label.toLowerCase()}`;

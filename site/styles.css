@@ -67,8 +67,6 @@ button { color: inherit; }
 .registration-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .registration-status { min-height: 17px; margin: 9px 0 0; color: var(--red-dark); font-size: 10px; line-height: 1.4; }
 .registration-continue { margin-top: 7px; border: 0; border-bottom: 1px solid var(--ink-soft); background: transparent; padding: 2px 0; color: var(--ink-soft); cursor: pointer; font-size: 10px; }
-.registration-privacy { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: #657276; font-size: 9px; line-height: 1.55; }
-
 .boot-screen {
   position: fixed; inset: 0; z-index: 1000; display: grid; place-content: center;
   gap: 22px; text-align: center; background: var(--ink); color: var(--paper);

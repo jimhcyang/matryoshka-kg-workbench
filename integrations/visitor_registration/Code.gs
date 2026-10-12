@@ -1,15 +1,23 @@
 /** Matryoshka visitor-registration endpoint for a spreadsheet-bound script. */
 
-const VISITOR_SHEET_NAME = "Visitors";
+const VISITOR_SHEET_NAME = "Visitor Events";
 const VISITOR_HEADERS = [
   "recorded_at_utc",
+  "event_type",
+  "action",
   "email",
   "page_url",
+  "route",
+  "target_type",
+  "target_id",
+  "detail",
   "referrer",
   "timezone",
   "language",
   "visitor_id",
+  "session_id",
   "registration_version",
+  "request_id",
 ];
 const ALLOWED_PAGE_PREFIXES = [
   "https://jimhcyang.github.io/matryoshka-kg-workbench/",
@@ -31,7 +39,7 @@ function setupVisitorLog() {
 }
 
 function doGet() {
-  return jsonResponse_({ok: true, service: "matryoshka_visitor_registration", version: "1"});
+  return jsonResponse_({ok: true, service: "matryoshka_visitor_registration", version: "2"});
 }
 
 function doPost(event) {
@@ -43,7 +51,7 @@ function doPost(event) {
     validatePayload_(payload);
 
     const cache = CacheService.getScriptCache();
-    const cacheKey = "visitor:" + sha256_(payload.email + "|" + payload.registration_version);
+    const cacheKey = "request:" + sha256_(payload.request_id);
     if (cache.get(cacheKey)) return registrationResponse_({ok: true, duplicate: true, request_id: requestId});
 
     const lock = LockService.getScriptLock();
@@ -54,13 +62,21 @@ function doPost(event) {
       const sheet = visitorSheet_(SpreadsheetApp.openById(spreadsheetId));
       sheet.appendRow([
         new Date().toISOString(),
+        safeCell_(payload.event_type, 40),
+        safeCell_(payload.action, 80),
         safeCell_(payload.email, 254),
         safeCell_(payload.page_url, 1000),
+        safeCell_(payload.route, 160),
+        safeCell_(payload.target_type, 80),
+        safeCell_(payload.target_id, 240),
+        safeCell_(payload.detail, 1200),
         safeCell_(payload.referrer, 1000),
         safeCell_(payload.timezone, 100),
         safeCell_(payload.language, 50),
-        safeCell_(payload.visitor_id, 100),
+        safeCell_(payload.visitor_id, 120),
+        safeCell_(payload.session_id, 120),
         safeCell_(payload.registration_version, 100),
+        safeCell_(payload.request_id, 120),
       ]);
       cache.put(cacheKey, "1", 21600);
     } finally {
@@ -77,25 +93,39 @@ function parsePayload_(event) {
   const raw = event && event.parameter && event.parameter.payload || event && event.postData && event.postData.contents;
   if (!raw) throw new Error("Request body is empty.");
   const payload = JSON.parse(raw);
+  const eventType = String(payload.event_type || "");
+  const visitorId = String(payload.visitor_id || "").trim();
+  const detail = typeof payload.detail === "string" ? payload.detail : JSON.stringify(payload.detail || {});
   return {
-    event_type: String(payload.event_type || ""),
+    event_type: eventType,
+    action: String(payload.action || (eventType === "visitor_registration" ? "email_submitted" : "")).trim(),
     email: String(payload.email || "").trim().toLowerCase(),
     website: String(payload.website || "").trim(),
     page_url: String(payload.page_url || "").trim(),
+    route: String(payload.route || "home").trim(),
+    target_type: String(payload.target_type || "").trim(),
+    target_id: String(payload.target_id || "").trim(),
+    detail: detail.trim(),
     referrer: String(payload.referrer || "").trim(),
     timezone: String(payload.timezone || "").trim(),
     language: String(payload.language || "").trim(),
-    visitor_id: String(payload.visitor_id || "").trim(),
+    visitor_id: visitorId,
+    session_id: String(payload.session_id || (visitorId ? "legacy_" + visitorId : "")).trim(),
     registration_version: String(payload.registration_version || "").trim(),
     request_id: String(payload.request_id || "").trim(),
   };
 }
 
 function validatePayload_(payload) {
-  if (payload.event_type !== "visitor_registration") throw new Error("Unsupported event type.");
+  if (["visitor_registration", "session_start", "page_view", "interaction"].indexOf(payload.event_type) < 0) throw new Error("Unsupported event type.");
+  if (!/^[a-z0-9_:-]{2,80}$/.test(payload.action)) throw new Error("A valid action is required.");
   if (payload.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) throw new Error("A valid email is required.");
-  if (!payload.visitor_id || payload.visitor_id.length > 100) throw new Error("A valid visitor ID is required.");
-  if (!/^[A-Za-z0-9_-]{8,100}$/.test(payload.request_id)) throw new Error("A valid request ID is required.");
+  if (!/^[A-Za-z0-9_-]{8,120}$/.test(payload.visitor_id)) throw new Error("A valid visitor ID is required.");
+  if (!/^[A-Za-z0-9_-]{8,120}$/.test(payload.session_id)) throw new Error("A valid session ID is required.");
+  if (!/^[A-Za-z0-9_-]{8,120}$/.test(payload.request_id)) throw new Error("A valid request ID is required.");
+  if (payload.route.length > 160 || payload.target_type.length > 80 || payload.target_id.length > 240 || payload.detail.length > 1200) {
+    throw new Error("Event metadata is too long.");
+  }
   if (!ALLOWED_PAGE_PREFIXES.some(function(prefix) { return payload.page_url.indexOf(prefix) === 0; })) {
     throw new Error("Page URL is not permitted.");
   }

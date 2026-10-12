@@ -1,8 +1,8 @@
 # Visitor Registration Endpoint
 
-This spreadsheet-bound Google Apps Script records one consented registration
-event before a browser opens the Matryoshka demo. It is a visitor log, not an
-authentication or authorization system.
+This spreadsheet-bound Google Apps Script records development-preview sessions,
+page views, and a bounded set of meaningful product interactions. It is a
+visitor/activity log, not an authentication or authorization system.
 
 ## Deploy
 
@@ -12,13 +12,34 @@ authentication or authorization system.
 4. In **Project Settings**, enable the manifest file and replace it with
    `appsscript.json` if desired. The code also works with the default manifest.
 5. Select `setupVisitorLog`, click **Run**, and approve the requested access.
-   This creates and formats the `Visitors` tab and records the spreadsheet ID
-   in Script Properties.
+   This creates and formats the `Visitor Events` tab and records the spreadsheet
+   ID in Script Properties. An older `Visitors` tab is left untouched.
 6. Select **Deploy > New deployment > Web app**. Set **Execute as** to `Me` and
    **Who has access** to `Anyone`, then deploy.
 7. Copy the URL ending in `/exec`. Do not use the `/dev` test URL.
 8. Put that URL in `web/visitor-config.js`, set `enabled` to `true`, rebuild the
    static site, and deploy it.
+
+For an existing deployment, replace `Code.gs`, run `setupVisitorLog` once, then
+use **Deploy > Manage deployments > Edit > New version > Deploy**. Editing the
+script without creating a new deployment version does not update the public
+`/exec` endpoint.
+
+## Session And Event Behavior
+
+- The email gate appears once per browser session, not once forever. A new
+  browser session therefore creates a new `session_start` row followed by the
+  initial `page_view` row.
+- Reloading during the same session does not ask for email again; it creates a
+  `page_view` row.
+- Meaningful actions create `interaction` rows, including mode/task selection,
+  search use, graph node or edge inspection, hierarchy drill-down, route and
+  atom inspection, source-cable opening, and live retrieval execution.
+- Hovers, graph dragging, pointer movement, and other high-volume cosmetic
+  events are deliberately excluded.
+- Raw cable text and raw free-form analyst query text are not written to the
+  visitor log. Live-query events contain task, profile, cutoff, character and
+  atom counts, retrieval counts, and completion status only.
 
 If a Workspace policy does not offer anonymous `Anyone` deployment, this
 static Pages design cannot submit to Apps Script for external visitors. Use an
@@ -27,11 +48,14 @@ settings.
 
 ## Data And Safeguards
 
-The private Sheet receives server time, normalized email, page URL, referrer,
-timezone, language, an anonymous browser-generated visitor ID, and registration
-version. The endpoint rejects invalid emails and unexpected page URLs, escapes
-spreadsheet-formula prefixes, ignores a honeypot field, suppresses immediate
-duplicates, and serializes writes with a script lock.
+The private Sheet receives server time, event type, action, normalized email,
+page URL, application route, bounded target metadata, referrer, timezone,
+language, an anonymous persistent visitor ID, a session ID, registration
+version, and request ID. Email is retained only in browser session storage; the
+persistent local value is an anonymous visitor ID. The endpoint rejects invalid
+emails and unexpected page URLs, bounds every field, escapes spreadsheet-formula
+prefixes, ignores a honeypot field, deduplicates exact request IDs, and
+serializes writes with a script lock.
 
 The public browser bundle contains no Sheet ID, Google credential, API key, or
 GitHub token. The `/exec` endpoint is necessarily public, so these controls
